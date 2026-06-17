@@ -198,12 +198,12 @@ PromisesCallbacks();
 function AsyncAwait():void {
     console.log("-- Async & Await --");
 
-    async function getBleachChar():Promise<void> {
+    async function FetchBoredAPI():Promise<void> {
         try {
-
+            
+            console.log("This is not a simulation");
             console.log("> Fetching Bored API <");
-            console.log("No luck involved this ain't a simulation");
-            const responseObject = await fetch("https://bored-api.appbrewery.com/random");
+            const responseObject = await fetch("/bored-api/random");
             const responseJSON = await responseObject.json();
             console.log("-- Async/Await Response --");
             console.log("You are bored ?\n"+responseJSON.activity);
@@ -213,7 +213,7 @@ function AsyncAwait():void {
         }
     };
     
-    getBleachChar();    
+    FetchBoredAPI();    
 
 }
 
@@ -258,8 +258,6 @@ import { useState, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
 function GAMBLING():ReactElement {
-    console.log("-- React Hooks --")
-
     const [BGcolor,setBGcolor] = useState("white");
     const [play,setPlay] = useState("Play");
     const [cnt_try,setCnt_try] = useState(0);

@@ -6,5 +6,12 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true, // Auto-open browser
+    proxy: {
+      '/bored-api': {
+        target: 'https://bored-api.appbrewery.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/bored-api/, '')
+      }
+    }
   },
 })
