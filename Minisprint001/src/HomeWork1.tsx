@@ -193,18 +193,21 @@ PromisesCallbacks();
 
 // Async/Await makes Promises more readable and easier to work with.
 // Instead of .then()/.catch()/.finally() with callbacks inside, we have async function -> await fetch
+// ^^ This Avoid Nested Callbacks ^^
 // This time i'm using fetch API, to show a real example not a simulation
 function AsyncAwait():void {
     console.log("-- Async & Await --");
 
     async function getBleachChar():Promise<void> {
         try {
+
             console.log("> Fetching Bored API <");
             console.log("No luck involved this ain't a simulation");
             const responseObject = await fetch("https://bored-api.appbrewery.com/random");
             const responseJSON = await responseObject.json();
             console.log("-- Async/Await Response --");
             console.log("You are bored ?\n"+responseJSON.activity);
+
         } catch (error) {
             console.error("!ERROR! from AsyncAwait",error);
         }
@@ -243,9 +246,55 @@ function Closures(){
     console.log("Count :",counter()); // count = 2
 
     const x = Multiplier(3);
-    console.log("Multiply 5 by 3 :", x(5)) // Use of variable "mult = 3" outside of its scope 
+    console.log("Multiply 5 by 3 :", x(5)) // Use of variable "mult = 3" outside of its scope
 }
 
 Closures()
 
 // 1.10. React Hooks: useState and useRef //
+
+import type { ReactElement } from "react";
+import { useState, useRef } from 'react';
+import { createRoot } from 'react-dom/client';
+
+function GAMBLING():ReactElement {
+    console.log("-- React Hooks --")
+
+    const [BGcolor,setBGcolor] = useState("white");
+    const [play,setPlay] = useState("Play");
+    const [cnt_try,setCnt_try] = useState(0);
+    const [num,setNum] = useState(-1);
+    const winning_number = useRef(Math.trunc(Math.random() * 10)+1);
+
+    function gamble():string {
+        const Random = Math.trunc(Math.random() * 10)+1
+        setNum(Random);
+        setCnt_try(cnt_try + 1);
+
+        if (Random == winning_number.current) {
+            setBGcolor("lightgreen")
+            return "!! YOU WON !!"
+        } else {
+            setBGcolor("red")
+            return "YOU LOSE"
+        }
+    }
+
+    
+    return (
+        <>
+            <p>Number of tries: {cnt_try}</p>
+            <div style={{ backgroundColor: BGcolor }} >
+                <h1>Wanna Gamble? Press the button !</h1>
+                <h3>Goal Number: {winning_number.current}</h3>
+                <h5 style={{ backgroundColor: BGcolor }}>{(num == -1) ? "-- Press Play --" : "Your Number: "+num}</h5>
+                <button type="button" onClick={() => setPlay(gamble())}>{play}</button> 
+            </div>
+        </>
+    )
+}
+
+createRoot(document.getElementById('root')!).render(
+    <GAMBLING />
+);
+

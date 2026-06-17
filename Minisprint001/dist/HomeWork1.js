@@ -1,5 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+import { jsxs as _jsxs, jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
 function VarLetConst() {
     console.log("-- VarLetConst --");
     try {
@@ -141,4 +140,27 @@ function Closures() {
     console.log("Multiply 5 by 3 :", x(5));
 }
 Closures();
+import { useState, useRef } from 'react';
+import { createRoot } from 'react-dom/client';
+function GAMBLING() {
+    console.log("-- React Hooks --");
+    const [BGcolor, setBGcolor] = useState("white");
+    const [play, setPlay] = useState("Play");
+    const winning_number = Math.trunc(Math.random() * 10) + 1;
+    const cnt_try = useRef(0);
+    function gamble() {
+        const num = Math.trunc(Math.random() * 10) + 1;
+        cnt_try.current += 1;
+        if (num == winning_number) {
+            setBGcolor("lightgreen");
+            return "!! YOU WON !!";
+        }
+        else {
+            setBGcolor("lightred");
+            return "YOU LOSE";
+        }
+    }
+    return (_jsxs(_Fragment, { children: [_jsxs("p", { children: ["Number of tries: ", cnt_try.current] }), _jsxs("div", { color: BGcolor, children: [_jsx("h1", { children: "Wanna Gamble? Press the button !" }), _jsx("button", { type: "button", onClick: () => setPlay(gamble()), children: play })] })] }));
+}
+createRoot(document.getElementById('root')).render(_jsx(GAMBLING, {}));
 //# sourceMappingURL=HomeWork1.js.map
