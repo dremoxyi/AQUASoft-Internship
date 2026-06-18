@@ -3,7 +3,7 @@ Welcome to my internship repository, Here you will find every project i have don
 
 The repository is organized such as every folder is a project.
 
-You can clone this repository with `git clone http://github.com/dremoxyi/AQUASoft-Internship`. 
+You can clone this repository with `git clone https://github.com/dremoxyi/AQUASoft-Internship.git`. 
 
 **_Summary_**
 - [MiniSprint 001](#minisprint-001)
