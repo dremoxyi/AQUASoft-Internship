@@ -3,6 +3,7 @@
   "compilerOptions": {
     // File Layout
     "outDir": "./dist",
+    "rootDir": "./src",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -43,5 +44,5 @@
     "skipLibCheck": true,
   }
 ,
-  "include": ["src/**/*", "vite.config.ts"]
+  "include": ["src/**/*"]
 }
