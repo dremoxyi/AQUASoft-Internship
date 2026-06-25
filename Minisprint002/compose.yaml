@@ -16,11 +16,6 @@ services:
     environment:
       POSTGRES_USER: dremoxyi
       POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dev
     ports: 
       - 5432:5432
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080

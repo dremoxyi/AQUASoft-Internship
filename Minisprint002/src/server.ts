@@ -1,30 +1,68 @@
+import dotenv from 'dotenv'
+dotenv.config();
+
 import express from 'express';
 import type { Application } from 'express';
 import { Sequelize } from 'sequelize';
 
 import router from './routes/index.ts';
-import exampleServices from './services/exampleServices.ts'
+import initModels from './models/sequelize/index.ts'
+
+import HotelRepository from './repositories/hotelRepo.ts';
+import CityRepository from './repositories/cityRepo.ts';
+import RegionRepository from './repositories/regionRepo.ts';
+import HotelController from './controllers/hotel/index.ts';
 
 const app: Application = express();
-const port = 3000;
+app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+
+if (!process.env.ADMIN_TOKEN) {
+  throw new Error(">> ADMIN_TOKEN is missing >> Please create .env with ADMIN_TOKEN")
+}
+if (!process.env.SERVER_PORT) {
+  throw new Error(">> SERVER_PORT is missing >> Please create .env with SERVER_PORT")
+}
+const port = process.env.SERVER_PORT;
 const sequelize = new Sequelize('dev', 'dremoxyi', 'admin', {
   host: 'localhost',
   dialect: 'postgres',
 });
-
-// Connect/Startup | DEBUG |
-app.listen(port, () => {
-    console.log(`> [  SERVER  ] Big Brother is watching : http://localhost:${port} <`);
-});
-try {
-  await sequelize.authenticate();
-  console.log('> [ DATABASE ] Connection has been established successfully. <');
-} catch (error) {
-  console.error('/!\\ Unable to connect to the database /!\\:', error);
+// postgresClient is the sequelize binded to the Postgres database. To access another database, it is better to instantiate another one.
+const postgresClient = connectToPostgres() // Function are Hoisted so it works
+function connectToPostgres():Sequelize {
+  sequelize.authenticate()
+  .then(() => {
+    console.log('[ SEQUELIZE ] > Connection has been established successfully <');
+    console.log('\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+  })
+  .catch((err) => {
+    console.log('[ SEQUELIZE ] > Unable to connect to the databse:',err);
+    process.exit(1);
+  })
+  return sequelize
+  // Avoid Async/Await makes it that the returned sequelize is not a Promise object, but the sequelize Instance directly.
 }
-const exampleService = new exampleServices();
-app.use('/', router({exampleService}));
-// END Connect/Startup | DEBUG |
+initModels(postgresClient);
+await postgresClient.sync();
+console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n')
+const models = postgresClient.models;
+
+
+const hotelRepository = new HotelRepository(models);
+const cityRepository = new CityRepository(models);
+const regionRepository = new RegionRepository(models);
+const repositories = { hotelRepository, cityRepository, regionRepository}
+
+const hotelController = new HotelController(repositories);
 
 
 
+const controllers = { hotelController }
+
+app.use('/', router(controllers));
+
+app.listen(port, () => {
+    console.log(`[  SERVER  ] > Ruuning on : http://localhost:${port} <\n`);
+    
+});
