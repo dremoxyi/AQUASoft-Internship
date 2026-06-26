@@ -3,7 +3,7 @@ import HotelService from '../../services/hotelServices.ts';
 import type { Request, Response } from 'express';
 
 export default class HotelController {
-    private hotelService: HotelService;
+    private readonly hotelService: HotelService;
 
     constructor(repositories:any) {
         this.hotelService = new HotelService(repositories);

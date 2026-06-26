@@ -12,6 +12,7 @@ import HotelRepository from './repositories/hotelRepo.ts';
 import CityRepository from './repositories/cityRepo.ts';
 import RegionRepository from './repositories/regionRepo.ts';
 import HotelController from './controllers/hotel/index.ts';
+import TransactionManager from './manager/TransactionManager.ts';
 
 const app: Application = express();
 app.use(express.urlencoded({extended: true}))
@@ -46,15 +47,15 @@ function connectToPostgres():Sequelize {
 initModels(postgresClient);
 await postgresClient.sync();
 console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n')
+const transactionManager = new TransactionManager(postgresClient)
 const models = postgresClient.models;
-
 
 const hotelRepository = new HotelRepository(models);
 const cityRepository = new CityRepository(models);
 const regionRepository = new RegionRepository(models);
-const repositories = { hotelRepository, cityRepository, regionRepository}
+const dependencies = { hotelRepository, cityRepository, regionRepository, transactionManager}
 
-const hotelController = new HotelController(repositories);
+const hotelController = new HotelController(dependencies);
 
 
 

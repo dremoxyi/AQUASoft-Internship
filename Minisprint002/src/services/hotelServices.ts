@@ -1,20 +1,24 @@
 import type { FullDTO, RegionDTO ,CityDTO, HotelDTO, updateHotelDTO } from '../models/DataTransferObject/index.ts';
 import CityRepository from '../repositories/cityRepo.ts';
-import type HotelRepository from '../repositories/hotelRepo.ts';
-import type RegionRepository from '../repositories/regionRepo.ts';
+import HotelRepository from '../repositories/hotelRepo.ts';
+import RegionRepository from '../repositories/regionRepo.ts';
+import TransactionManager from '../manager/TransactionManager.ts';
+import { Transaction } from 'sequelize';
 
 class HotelServices {
-    private repository: HotelRepository;
-    private CityRepo : CityRepository;
-    private RegionRepo : RegionRepository
+    private readonly repository: HotelRepository;
+    private readonly CityRepo : CityRepository;
+    private readonly RegionRepo : RegionRepository;
+    private readonly transactionManager: TransactionManager
 
     constructor(
-        {hotelRepository, cityRepository,regionRepository}
-        :{hotelRepository: HotelRepository, cityRepository:CityRepository, regionRepository:RegionRepository}){
+        {hotelRepository, cityRepository,regionRepository,transactionManager}
+        :{hotelRepository: HotelRepository, cityRepository:CityRepository, regionRepository:RegionRepository, transactionManager:TransactionManager}){
 
         this.repository = hotelRepository
         this.CityRepo = cityRepository
         this.RegionRepo = regionRepository
+        this.transactionManager = transactionManager
     }
 
 
@@ -23,8 +27,8 @@ class HotelServices {
         return test;
     }
 
-    private async getCity(cityDraft: CityDTO){
-        let city = await this.CityRepo.getCityByID(cityDraft.CityID);
+    private async getCity(cityDraft: CityDTO, transaction?:Transaction){
+        let city = await this.CityRepo.getCityByID(cityDraft.CityID, transaction);
         if (!city) {
             if ((cityDraft.CityName) && (cityDraft.Country)) {
                 city = false;
@@ -35,8 +39,8 @@ class HotelServices {
         return city;
     }
 
-    private async getRegion(RegionDraft: RegionDTO){
-        let region = await this.RegionRepo.getRegionByID(RegionDraft.PropertyStateProvinceID);
+    private async getRegion(RegionDraft: RegionDTO, transaction?:Transaction){
+        let region = await this.RegionRepo.getRegionByID(RegionDraft.PropertyStateProvinceID,transaction);
         if (!region) {
             if (RegionDraft.PropertyStateProvinceName){
                 region = false
@@ -58,21 +62,24 @@ class HotelServices {
         return hotel
     }
 
-    async createHotel(newHotel:FullDTO) {  
-        const cityDraft:CityDTO = { CityID: newHotel.CityID, CityName: newHotel.PropertyCityName!, Country:newHotel.PropertyCountryCode! }
-        const createCity:any = await this.getCity(cityDraft)
+    async createHotel(newHotel:FullDTO) {
+        return this.transactionManager.runInTransaction(async (t) => {
+            const cityDraft:CityDTO = { CityID: newHotel.CityID, CityName: newHotel.PropertyCityName!, Country:newHotel.PropertyCountryCode! }
+            const createCity:any = await this.getCity(cityDraft, t)
 
-        const regionDraft:RegionDTO = { PropertyStateProvinceID: newHotel.PropertyStateProvinceID, PropertyStateProvinceName: newHotel.PropertyStateProvinceName!}
-        const createRegion:any = await this.getRegion(regionDraft)
-        const { PropertyCityName, PropertyCountryCode,  ...restHotel  } = newHotel
+            const regionDraft:RegionDTO = { PropertyStateProvinceID: newHotel.PropertyStateProvinceID, PropertyStateProvinceName: newHotel.PropertyStateProvinceName!}
+            const createRegion:any = await this.getRegion(regionDraft, t)
+            const { PropertyCityName, PropertyCountryCode,  ...restHotel  } = newHotel
 
-        if (!createCity) await this.CityRepo.create(cityDraft);
-        console.log("> City Done <")
-        if (!createRegion) await this.RegionRepo.create(regionDraft);
-        console.log("> Region Done <")
-        const hotel = await this.repository.create( {...restHotel} );
-        console.log("> Hotel Done <")
-        return hotel
+            
+            if (!createCity) await this.CityRepo.create(cityDraft, t);
+            console.log("> City Created <")
+            if (!createRegion) await this.RegionRepo.create(regionDraft, t);
+            console.log("> Region Created <")
+            const hotel = await this.repository.create( {...restHotel}, t);
+            console.log("> Hotel Created <")
+            return hotel
+        });
     }
 
     async updateHotel(updatedHotel:updateHotelDTO) {
@@ -81,27 +88,28 @@ class HotelServices {
     }
 
     async deleteHotel(ID: number) {
-        const hotel = await this.repository.findById(ID);
-        if (!hotel) {
-            throw new Error("Hotel ID not found");
-        }
-        const cityID = hotel.CityID;
-        const regionID = hotel.PropertyStateProvinceID;
-        const DeletedHotel = await this.repository.delete(ID);
-        let DeletedCity = 0;
-        let DeletedRegion = 0;
-        const remainingHotel_inCity = await this.repository.cityHasHotel(cityID);
-        const remainingHotel_inRegion = await this.repository.regionHasHotel(regionID);
+        return this.transactionManager.runInTransaction(async (t) => {
+            const hotel = await this.repository.findById(ID,t);
+            if (!hotel) {
+                throw new Error("Hotel ID not found");
+            }
+            const cityID = hotel.CityID;
+            const regionID = hotel.PropertyStateProvinceID;
+            const DeletedHotel = await this.repository.delete(ID,t);
+            let DeletedCity = 0;
+            let DeletedRegion = 0;
+            const remainingHotel_inCity = await this.repository.cityHasHotel(cityID,t);
+            const remainingHotel_inRegion = await this.repository.regionHasHotel(regionID,t);
 
-        if (!remainingHotel_inCity) {
-            DeletedCity = await this.CityRepo.delete(cityID);
-        }
+            if (!remainingHotel_inCity) {
+                DeletedCity = await this.CityRepo.delete(cityID,t);
+            }
 
-        if (!remainingHotel_inRegion) {
-            DeletedRegion = await this.RegionRepo.delete(regionID);
-        }
-
-        return { DeletedHotel, DeletedCity, DeletedRegion };
+            if (!remainingHotel_inRegion) {
+                DeletedRegion = await this.RegionRepo.delete(regionID,t);
+            }
+            return { DeletedHotel, DeletedCity, DeletedRegion };
+        });
     }
 }
 
