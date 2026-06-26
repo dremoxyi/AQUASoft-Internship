@@ -14,6 +14,9 @@
 function VarLetConst():void {
     console.log("\n-- VarLetConst --");
     try {
+        console.log("Hoisting refers to declarations being processed before running the code")
+        console.log("x =",x!,"| let y is Hoisted but cause ReferenceError | const z not Hoisted")
+
         console.log("> Defining 'var x','let y' and 'const z'")
         var x:number = 1;
         let y:number = 2;
