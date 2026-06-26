@@ -12,13 +12,13 @@ class HotelRepository {
         return 'HotelService: Getting Hotel from Database'
     }
 
-    async countByCity(cityID:number) {
-        const count = await this.models.Hotel.count({ where:{CityID: cityID} })
-        return count
+    async cityHasHotel(cityID:number) {
+        const hotel = await this.models.Hotel.findOne({ where:{CityID: cityID}, attributes: ["GlobalPropertyID"] });
+        return hotel !== null;
     }
-    async countByRegion(regionID:number) {
-        const count = await this.models.Hotel.count({ where: {PropertyStateProvinceID:regionID}})
-        return count
+    async regionHasHotel(regionID:number) {
+        const hotel = await this.models.Hotel.findOne({ where: {PropertyStateProvinceID:regionID}, attributes:["GlobalPropertyID"]});
+        return hotel !== null;
     }
 
     async findAll() {
@@ -42,7 +42,6 @@ class HotelRepository {
     }
 
     async update(updatedHotel:updateHotelDTO){
-        if (!updatedHotel.GlobalPropertyID) { throw new Error("[ REPO ] > Global Property ID needed")}
         const { GlobalPropertyID, ...rest } = updatedHotel 
         const hotel = await this.models.Hotel.update( {...rest} , { where: {GlobalPropertyID: GlobalPropertyID}, returning: true});
         return hotel

@@ -6,17 +6,20 @@ export default function authenticate(req:Request, res:Response, next: NextFuncti
     console.log("\n-> WELCOME TO dremoxyi API BORDER CHECKPOINT <-")
     console.log(">> PAPERS PLEASE ! <<",authorization)
     if (!authorization) {
-        return res.status(401).json({ message: "|||||| YOU DON'T HAVE YOUR PAPERS? -> UNAUTHORIZED -> 'Bearer token' required ||||||"})
+        console.log(">> YOU DON'T HAVE YOUR PAPERS? <<\n|||||| ACCESS DENIED ||||||")
+        return res.status(401).json({ message: "Unauthorized -> 'Bearer token' required"})
     }
     const [ bearer, token ] = authorization.split(" ");
     console.log(">> INSPECTING DOCUMENTS... <<",token)
     if (bearer !== 'Bearer') {
-        return res.status(401).json({ message: "|||||| YOUR DOCUMENT FORMAT IS INVALID -> UNAUTHORIZED -> Expected 'Bearer token' format ||||||"})
+        console.log(">> YOUR DOCUMENT DOES NOT MEET 'Bearer' STANDARDS <<\n|||||| ACCESS DENIED ||||||")
+        return res.status(401).json({ message: "Unauthorized -> Expected 'Bearer token' format"})
     }
     if (token !== acceptanceCriteria ) {
-        return res.status(401).json({ message:"|||||| YOUR PAPERS HAVE BEEN REJECTED, YOU SHALL NOT PASS! -> UNAUTHORIZED -> Invalid 'Bearer token' ||||||"})
+        console.log(">> CLEARANCE REFUSED, YOU SHALL NOT PASS! <<\n|||||| ACCESS DENIED ||||||")
+        return res.status(401).json({ message:"Unauthorized -> Invalid 'Bearer token'"})
     }
-    console.log(">> ACCESS GRANTED! YOU GOOD TO GO. <<")
+    console.log("-> ACCESS GRANTED! YOU GOOD TO GO. <-\n")
 
     next();
 }

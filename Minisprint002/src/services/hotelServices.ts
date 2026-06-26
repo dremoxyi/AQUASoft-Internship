@@ -60,10 +60,10 @@ class HotelServices {
 
     async createHotel(newHotel:FullDTO) {  
         const cityDraft:CityDTO = { CityID: newHotel.CityID, CityName: newHotel.PropertyCityName!, Country:newHotel.PropertyCountryCode! }
-        const createCity:boolean = await this.getCity(cityDraft)
+        const createCity:any = await this.getCity(cityDraft)
 
         const regionDraft:RegionDTO = { PropertyStateProvinceID: newHotel.PropertyStateProvinceID, PropertyStateProvinceName: newHotel.PropertyStateProvinceName!}
-        const createRegion:boolean = await this.getRegion(regionDraft)
+        const createRegion:any = await this.getRegion(regionDraft)
         const { PropertyCityName, PropertyCountryCode,  ...restHotel  } = newHotel
 
         if (!createCity) await this.CityRepo.create(cityDraft);
@@ -88,16 +88,16 @@ class HotelServices {
         const cityID = hotel.CityID;
         const regionID = hotel.PropertyStateProvinceID;
         const DeletedHotel = await this.repository.delete(ID);
-        let DeletedCity = null;
-        let DeletedRegion = null;
-        const remainingHotel_inCity = await this.repository.countByCity(cityID);
-        const remainingHotel_inRegion = await this.repository.countByRegion(regionID);
+        let DeletedCity = 0;
+        let DeletedRegion = 0;
+        const remainingHotel_inCity = await this.repository.cityHasHotel(cityID);
+        const remainingHotel_inRegion = await this.repository.regionHasHotel(regionID);
 
-        if (remainingHotel_inCity === 0) {
+        if (!remainingHotel_inCity) {
             DeletedCity = await this.CityRepo.delete(cityID);
         }
 
-        if (remainingHotel_inRegion === 0) {
+        if (!remainingHotel_inRegion) {
             DeletedRegion = await this.RegionRepo.delete(regionID);
         }
 
