@@ -56,6 +56,10 @@ Client -> Routes -> Middleware -> Controller -> Services -> Repository -> Postgr
 - Repository: Performs Sequelize database operations.
 - Models: Defines the Database Models.
 - Manager: Handles Sequelize transactions (performs rollbacks when an error occurs).
+
+### Built with
+- TypeScript v6.0.3
+- Node.js v26.3.0
 - Express.js v5.2.1
 - Sequelize v6.37.8
 - PostgreSQL
