@@ -71,6 +71,7 @@ Client -> Routes -> Middleware -> Controller -> Services -> Repository -> Postgr
 
 ### How to use
 *Reminder: be sure to be located in `./AQUASoft-Intership/Minisprint002/$` before continuing*
+
 Create a `.env` file based on `.env.example`:
 ```bash
 ADMIN_TOKEN=ichigo-kurosaki-vs-yhwach 
@@ -93,6 +94,7 @@ Finally, Run the command:
 npm run dev
 ```
 The database will be available at `localhost:5432`
+
 The server should be running locally on `http://localhost:3000/`.
 
 ### API Endpoints
