@@ -82,8 +82,8 @@ class HotelServices {
         });
     }
 
-    async updateHotel(updatedHotel:updateHotelDTO) {
-        const hotel = await this.repository.update(updatedHotel);
+    async updateHotel(GlobalPropertyID:number,updatedHotel:updateHotelDTO) {
+        const hotel = await this.repository.update(GlobalPropertyID,updatedHotel);
         return hotel
     }
 

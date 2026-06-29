@@ -10,7 +10,7 @@ export default (hotelController: HotelController): Router => {
   router.get('/', hotelController.getAllHotels);
   router.get('/:name', hotelController.getHotelsByName);
   router.post('/', authenticate,hotelController.createHotel);
-  router.put('/', authenticate,hotelController.updateHotel);
+  router.put('/:id', authenticate,hotelController.updateHotel);
   router.delete('/:id', authenticate,hotelController.deleteHotel);
 
   return router;

@@ -42,9 +42,8 @@ class HotelRepository {
         return hotel 
     }
 
-    async update(updatedHotel:updateHotelDTO){
-        const { GlobalPropertyID, ...rest } = updatedHotel 
-        const hotel = await this.models.Hotel.update( {...rest} , { where: {GlobalPropertyID: GlobalPropertyID}, returning: true});
+    async update(GlobalPropertyID:number, updatedHotel:updateHotelDTO){
+        const hotel = await this.models.Hotel.update( updatedHotel , { where: {GlobalPropertyID: GlobalPropertyID}, returning: true});
         return hotel
     }
 

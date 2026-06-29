@@ -1,6 +1,7 @@
 import { INTEGER } from 'sequelize';
 import HotelService from '../../services/hotelServices.ts';
 import type { Request, Response } from 'express';
+import { stringify } from 'node:querystring';
 
 export default class HotelController {
     private readonly hotelService: HotelService;
@@ -15,6 +16,7 @@ export default class HotelController {
     }
 
     getHotelsByName = async (req:Request,res:Response) => {
+        console.log(req.params)
         if ((typeof req.params.name) !== 'string') {
             console.log("[ERROR] Could not proceed with 'getHotelsByName'")
             return res.status(401).json({message : "parameter 'name' must be a 'string'"})
@@ -33,19 +35,20 @@ export default class HotelController {
     }
 
     updateHotel = async (req:Request,res:Response) => {
+        if (typeof req.params.id !== 'string'){
+            console.log("[ERROR] Impossible to get here, your input was a 'string[]' instead of a 'string'")
+            return res.status(401).json({message : "Wrong ID format in URI, 'id' must not be an array"})
+        }
+        if (isNaN(Number(req.params.id))){
+            console.log("[ERROR] User's input ID is NaN (Not A Number)")
+            return res.status(401).json({message : "Wrong ID format in URI, 'id' must not be a number"})
+        }
+        const id = Number(req.params.id) 
         if (!req.body) {
             console.log( "[ERROR] No request body for 'UpdateHotel'")
             return res.status(401).json({message : "Missing required field > 'JSON request body' required"})
         }
-        if (!req.body.GlobalPropertyID) {
-            console.log( "[ERROR] Could not proceed with 'UpdateHotel'")
-            return res.status(401).json({message : "Missing ID > 'GlobalPropertyID' required"})
-        }
-        if (isNaN(req.body.GlobalPropertyID)) {
-            console.log("[ERROR] Could not proceed with 'deleteHotel'")
-            return res.status(401).json({message: "Invalid ID value > 'GlobalPropertyID' must be a number"})
-        }
-        const hotel = await this.hotelService.updateHotel(req.body);
+        const hotel = await this.hotelService.updateHotel(id,req.body);
         return res.json(hotel);
     }
     deleteHotel = async (req:Request, res:Response) => {
