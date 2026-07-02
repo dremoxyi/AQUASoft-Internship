@@ -8,6 +8,7 @@ You can clone this repository with `git clone https://github.com/dremoxyi/AQUASo
 **_Summary_**
 - [MiniSprint 001](#minisprint-001)
 - [MiniSprint 002](#minisprint-002)
+- [MiniSprint 003](#minisprint-003)
 - More coming...
 
 ## MiniSprint 001
@@ -107,3 +108,48 @@ Refer to /src/models/sequelize/index.js for hotel object
 | POST | /hotels | Create a hotel |
 | PUT | /hotels | Update a hotel |
 | DELETE | /hotels/:id | Delete a hotel |
+
+## MiniSprint 003
+Continuation of MiniSprint 002
+- Added Airports, Reviews, Users, HotelGroup, PriceOffers Tables
+- Added Repositories, Services, Controller
+- New Scraped Data -> Refactored Init file
+- Added new GET route: /airports/:iata_code/closest-hotel-offers, that shows 10 closest hotels price offers from an airport iata code
+
+### Built with
+Refer to Minisprint 002
+
+### What to install
+- Node.js v26.3.0+
+- Docker (with postgres)
+- Postman (for test)
+
+### How to use
+Only change is initialization of database: 
+
+from 
+```console
+npm run db:init
+``` 
+
+to 
+```console
+npm run init
+```
+
+For the rest refer to Minisprint 002
+
+### API Endpoints
+Refer to /src/models/sequelize/index.js for hotel object
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /hotels | Retrieve all hotels |
+| GET | /hotels/:name | Retrieve a hotel by name |
+| POST | /hotels | Create a hotel |
+| PUT | /hotels | Update a hotel |
+| DELETE | /hotels/:id | Delete a hotel |
+| GET | /airports/:iata_code/closest-hotel-offers | Retrieve closest hotel offers from an Airport |
+
+
+
