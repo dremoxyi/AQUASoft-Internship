@@ -1,6 +1,5 @@
-import { Op, Transaction } from 'sequelize';
-import type { HotelDTO, updateHotelDTO } from '../models/DataTransferObject/index.ts';
-import { transcode } from 'node:buffer';
+import { Association, Op, Transaction } from 'sequelize';
+import type { HotelDTO, UpdateHotelDTO } from '../models/DataTransferObject/index.ts';
 
 class HotelRepository {
     private readonly models: any;
@@ -18,31 +17,60 @@ class HotelRepository {
         return hotel !== null;
     }
     async regionHasHotel(regionID:number,transaction?:Transaction) {
-        const hotel = await this.models.Hotel.findOne({ where: {PropertyStateProvinceID:regionID}, attributes:["GlobalPropertyID"],transaction});
+        const hotel = await this.models.Hotel.findOne({where: {PropertyStateProvinceID:regionID}, attributes:["GlobalPropertyID"],transaction});
         return hotel !== null;
     }
 
     async findAll() {
-        const hotel = await this.models.Hotel.findAll();
+        const hotel = await this.models.Hotel.findAll({
+            include: [
+                //{model: this.models.HotelGroup},
+                //{model: this.models.PriceOffer},
+                //{model: this.models.Review}
+            ]});
         return hotel;
     }
 
     async findById(ID:number,transaction:Transaction) {
-        const hotel = await this.models.Hotel.findOne({ where: {GlobalPropertyID: ID}, transaction});
+        const hotel = await this.models.Hotel.findOne({
+            where: {GlobalPropertyID: ID},
+            include: [
+                {model: this.models.HotelGroup},
+                {model: this.models.PriceOffer},
+                {model: this.models.Review}
+            ],
+            transaction
+        });
         return hotel;
     }
 
     async findByName(name:string) {
-        const hotel = await this.models.Hotel.findOne({ where: {GlobalPropertyName: {[Op.iLike]: `%`+name+`%`}}})
+        const hotel = await this.models.Hotel.findOne({
+            where: {GlobalPropertyName: {[Op.iLike]: `%`+name+`%`}},
+            include: [
+                {model: this.models.HotelGroup},
+                {model: this.models.PriceOffer},
+                {model: this.models.Review}
+            ]
+        });
         return hotel        
     }
 
     async create(newHotel:HotelDTO, transaction?:Transaction) {
-        const hotel = await this.models.Hotel.create(newHotel, {transaction});
-        return hotel 
+        try {
+            const hotel = await this.models.Hotel.create(newHotel, {
+                include: [
+                    {association: 'PriceOffers'}
+                ]
+                ,transaction
+            });
+            return hotel
+        } catch (err:any){
+            console.log(err)
+        } 
     }
 
-    async update(GlobalPropertyID:number, updatedHotel:updateHotelDTO){
+    async update(GlobalPropertyID:number, updatedHotel:UpdateHotelDTO){
         const hotel = await this.models.Hotel.update( updatedHotel , { where: {GlobalPropertyID: GlobalPropertyID}, returning: true});
         return hotel
     }

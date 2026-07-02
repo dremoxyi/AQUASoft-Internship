@@ -13,6 +13,10 @@ import CityRepository from './repositories/cityRepo.ts';
 import RegionRepository from './repositories/regionRepo.ts';
 import HotelController from './controllers/hotel/index.ts';
 import TransactionManager from './manager/TransactionManager.ts';
+import ReviewRepository from './repositories/reviewRepo.ts';
+import PriceOfferRepository from './repositories/priceofferRepo.ts';
+import AirportController from './controllers/airport/index.ts';
+import AirportRepository from './repositories/airportRepo.ts';
 
 const app: Application = express();
 app.use(express.urlencoded({extended: true}))
@@ -53,17 +57,18 @@ const models = postgresClient.models;
 const hotelRepository = new HotelRepository(models);
 const cityRepository = new CityRepository(models);
 const regionRepository = new RegionRepository(models);
-const dependencies = { hotelRepository, cityRepository, regionRepository, transactionManager}
+const airportRepository = new AirportRepository(models);
+const priceofferRepository = new PriceOfferRepository(models);
+const reviewRepository = new ReviewRepository(models);
+
+const dependencies = { hotelRepository, cityRepository, regionRepository,reviewRepository,priceofferRepository,airportRepository,transactionManager}
 
 const hotelController = new HotelController(dependencies);
+const airportController = new AirportController(dependencies);
 
-
-
-const controllers = { hotelController }
+const controllers = { hotelController,airportController };
 
 app.use('/', router(controllers));
-
 app.listen(port, () => {
     console.log(`[  SERVER  ] > Ruuning on : http://localhost:${port} <\n`);
-    
 });

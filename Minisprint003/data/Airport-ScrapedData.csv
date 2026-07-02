@@ -1,0 +1,3 @@
+AirportID;Iata_code;Airport_name;CityID;Latitude;Longitude
+1;MEL;Melbourne Airport;1;-37.6690;144.8410
+2;AVV;Avalon Airport;1;-38.0394;144.4695

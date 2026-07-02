@@ -3,7 +3,7 @@
     "start": "node dist/server.js",
     "build": "tsc -p .",
     "dev": "nodemon src/server.ts",
-    "db:init": "ts-node --esm src/initDb.ts"
+    "init": "ts-node --esm src/init.ts"
   },
   "dependencies": {
     "csv-parse": "^7.0.0",

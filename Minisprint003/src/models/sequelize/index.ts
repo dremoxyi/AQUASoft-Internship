@@ -127,6 +127,13 @@ export default (sequelize: Sequelize) => {
             type: DataTypes.INTEGER,
             primaryKey:true
         },
+        HotelID: {
+            type: DataTypes.INTEGER,
+            references: {
+                model:Hotel,
+                key: 'GlobalPropertyID'
+            }
+        },
         UserID: {
             type: DataTypes.INTEGER,
             allowNull:false,
@@ -135,8 +142,20 @@ export default (sequelize: Sequelize) => {
                 key: 'UserID'
             }
         },
+        Title:{
+            type: DataTypes.STRING(255),
+            allowNull:true
+        },
         Message:{
             type: DataTypes.TEXT,
+            allowNull:true
+        },
+        TripType:{
+            type: DataTypes.STRING(50),
+            allowNull:true
+        },
+        DateOfStay:{
+            type: DataTypes.STRING(25),
             allowNull:true
         },
         OverallRating: {
@@ -169,7 +188,7 @@ export default (sequelize: Sequelize) => {
     })
 
     const HotelGroup = sequelize.define("HotelGroup",{
-        ID:{
+        HotelGroupID:{
             type:DataTypes.INTEGER,
             primaryKey:true
         },
@@ -179,15 +198,15 @@ export default (sequelize: Sequelize) => {
     })
 
     const Airport = sequelize.define("Airport",{
-        ID: {
+        AirportID: {
             type: DataTypes.INTEGER,
             primaryKey:true
         },
         Iata_code: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING(3)
         },
         Airport_name: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING(100)
         },
         CityID: {
             type: DataTypes.INTEGER,
@@ -206,25 +225,29 @@ export default (sequelize: Sequelize) => {
     })
 
     const PriceOffer =  sequelize.define("PriceOffer",{
-        ID: {
+        PriceOfferID: {
             type: DataTypes.INTEGER,
             primaryKey:true
         },
-        Price1: {
-            type: DataTypes.INTEGER,
+        HotelID: {
+            type:DataTypes.INTEGER,
+            references:{
+                model:Hotel,
+                key:'GlobalPropertyID'
+            }
         },
-        Price2: {
-            type: DataTypes.INTEGER,
+        Category:{
+            type:DataTypes.ENUM('budget','standard','comfort','premium','luxury'),
         },
-        Price3: {
-            type: DataTypes.INTEGER,
-        },
-        Price4: {
-            type: DataTypes.INTEGER,
-        },
-        Price5: {
-            type: DataTypes.INTEGER,
-        },
+        Price:{
+            type:DataTypes.DECIMAL
+        }
+    },
+    {
+        indexes:[{
+            unique:true,
+            fields: ["HotelID","Category"]
+        }]
     })
 
 
@@ -250,9 +273,50 @@ export default (sequelize: Sequelize) => {
         foreignKey: 'PropertyStateProvinceID',
     })
 
-    HotelGroup.hasMany(Hotel);
-    Hotel.belongsTo(HotelGroup);
+    HotelGroup.hasMany(Hotel,{
+        foreignKey:{
+            name: "HotelGroupID",
+            allowNull:true
+        }}
+    );
+    Hotel.belongsTo(HotelGroup,{
+        foreignKey:{
+            name: "HotelGroupID",
+            allowNull:true
+        }
+    });
 
-    Hotel.hasMany(Review);
-    Review.belongsTo(Hotel);
+    Hotel.hasMany(Review,{
+        foreignKey:{
+            name: "HotelID",
+            allowNull:true
+        }
+    });
+    Review.belongsTo(Hotel,{
+        foreignKey:{
+            name: "HotelID",
+            allowNull:true
+        }
+    });
+
+    Hotel.hasMany(PriceOffer,{
+        foreignKey:{
+            name: "HotelID",
+            allowNull:true
+        }
+    });
+
+    PriceOffer.belongsTo(Hotel,{
+        foreignKey:{
+            name: "HotelID",
+            allowNull:true
+        }
+    });
+
+    User.hasMany(Review,{
+        foreignKey:'UserID'
+    });
+    Review.belongsTo(User,{
+        foreignKey:'UserID'
+    });
 }

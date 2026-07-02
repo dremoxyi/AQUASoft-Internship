@@ -1,0 +1,11 @@
+Global Property ID;Source Property ID;Global Property Name;Global Chain Code;Hotel Group Name;Property Address 1;Property Address 2;Primary Airport Code;Property City Name;Property State/Province;Property Zip/Postal;Property Country Code;Property Phone Number;Property Fax Number;Sabre Property Rating;Property Latitude;Property Longitude;Source Group Code
+1;;Grand Hyatt Melbourne;HYATT;Hyatt Hotels;123 Collins Street;;MEL;Melbourne;Victoria;3000;AU;+61-3-9657-1234;;5.0;-37.8140;144.9710;
+2;;The Langham Melbourne;LANG;Langham Hospitality Group;1 Southgate Avenue;;MEL;Melbourne;Victoria;3006;AU;+61-3-8696-8888;;5.0;-37.8205;144.9658;
+3;;Crown Towers Melbourne;CROWN;Crown Resorts;8 Whiteman Street;;MEL;Melbourne;Victoria;3006;AU;+61-3-9292-6868;;5.0;-37.8225;144.9584;
+4;;Hilton Melbourne Little Queen Street;HLTN;Hilton Hotels & Resorts;18 Little Queen Street;;MEL;Melbourne;Victoria;3000;AU;+61-3-9100-0000;;5.0;-37.8128;144.9609;
+5;;InterContinental Melbourne The Rialto;IHG;InterContinental Hotels Group;495 Collins Street;;MEL;Melbourne;Victoria;3000;AU;+61-3-8627-1400;;5.0;-37.8180;144.9589;
+6;;Sofitel Melbourne On Collins;ACCOR;Accor;25 Collins Street;;MEL;Melbourne;Victoria;3000;AU;+61-3-9653-0000;;5.0;-37.8137;144.9735;
+7;;Novotel Melbourne Central;ACCOR;Accor;399 Little Lonsdale Street;;MEL;Melbourne;Victoria;3000;AU;+61-3-9908-5800;;4.5;-37.8116;144.9598;
+8;;Rydges Melbourne;RYDGES;EVT Hotels & Resorts;186 Exhibition Street;;MEL;Melbourne;Victoria;3000;AU;+61-3-9662-0511;;4.5;-37.8107;144.9697;
+9;;Hotel Windsor;WINDSOR;;111 Spring Street;;MEL;Melbourne;Victoria;3000;AU;+61-3-9633-6000;;5.0;-37.8114;144.9738;
+10;;Park Hyatt Melbourne;HYATT;Hyatt Hotels;1 Parliament Square;;MEL;Melbourne;Victoria;3002;AU;+61-3-9224-1234;;5.0;-37.8098;144.9771;

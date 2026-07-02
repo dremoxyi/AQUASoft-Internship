@@ -1,7 +1,5 @@
-import { INTEGER } from 'sequelize';
 import HotelService from '../../services/hotelServices.ts';
 import type { Request, Response } from 'express';
-import { stringify } from 'node:querystring';
 
 export default class HotelController {
     private readonly hotelService: HotelService;
