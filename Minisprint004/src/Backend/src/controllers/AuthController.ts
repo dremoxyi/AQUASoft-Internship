@@ -90,6 +90,7 @@ export default class AuthController {
             return null
         }
         clearCookie(res)
+        return res.json({ message: "Logged out" })
     }
 
     check = async (req:Request, res:Response) => {
@@ -114,7 +115,6 @@ export default class AuthController {
             return res.status(200).json(user);
         } catch {
             this.logout(req,res);
-            return res.status(401).json({ message:"Session Expired"})
         }
     }
 

@@ -8,16 +8,6 @@ const ROLE_ID_BY_NAME: Record<string, number> = {
     "Traveler": 4,
 };
 
-function requireAdmin(res: Response) {
-    const actor = res.locals.user as { rolename?: string } | undefined
-
-    if (actor?.rolename !== "Admin") {
-        return false
-    }
-
-    return true
-}
-
 export default class UserController {
     private readonly userService: UserService;
     private readonly models: any;
