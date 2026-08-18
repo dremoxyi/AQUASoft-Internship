@@ -1,0 +1,970 @@
+.panel {
+    display: grid;
+    gap: 1.4rem;
+}
+
+/* ---------- Summary ---------- */
+
+.summaryRow {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.summaryRow > div {
+    min-width: 160px;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--clr-card-bg), white 4%);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.025);
+}
+
+.kicker {
+    margin: 0 0 0.35rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--clr-muted);
+}
+
+.summaryRow strong {
+    font-size: 1.35rem;
+    color: var(--clr-ink);
+}
+
+/* ---------- Group form ---------- */
+
+.form {
+    padding: 1.25rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--clr-card-bg), white 2%),
+        white
+    );
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+}
+
+.formHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.formHead h3,
+.listHead h3,
+.cardTop h4 {
+    margin: 0;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.formGrid label {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--clr-muted);
+}
+
+.formGrid input,
+.formGrid select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    outline: none;
+    background: white;
+    font: inherit;
+    color: var(--clr-ink);
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background-color 0.15s ease;
+}
+
+.formGrid input:hover,
+.formGrid select:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--clr-accent),
+        var(--clr-border) 55%
+    );
+}
+
+.formGrid input:focus,
+.formGrid select:focus {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+/* ---------- Form actions ---------- */
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.formActions > button:not(.cancelButton) {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--clr-accent);
+    border-radius: 4px;
+    background: var(--clr-accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        filter 0.18s ease,
+        transform 0.12s ease;
+}
+
+.formActions > button:not(.cancelButton):hover {
+    filter: brightness(0.95);
+}
+
+.formActions > button:not(.cancelButton):active {
+    transform: translateY(1px);
+}
+
+.formActions > button:not(.cancelButton):disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/*
+ * CANCEL BUTTON
+ *
+ * Intentionally matches HotelTab.
+ */
+.cancelButton {
+    padding: 0.8rem 1.2rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    background: white;
+    color: var(--clr-ink);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        filter 0.18s ease;
+}
+
+.cancelButton:hover {
+    background: color-mix(in srgb, var(--clr-card-bg), white 5%);
+}
+
+/* ---------- Ghost / secondary buttons ---------- */
+
+.ghostButton {
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    background: white;
+    color: var(--clr-ink);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.ghostButton:hover {
+    background: color-mix(in srgb, var(--clr-card-bg), white 8%);
+    border-color: color-mix(
+        in srgb,
+        var(--clr-accent),
+        var(--clr-border) 60%
+    );
+}
+
+/* ---------- Error ---------- */
+
+.error {
+    margin: 0.9rem 0 0;
+    color: #b42318;
+}
+
+/* ---------- Group list ---------- */
+
+.listArea {
+    display: grid;
+    gap: 1rem;
+}
+
+.listHead h3 {
+    color: var(--clr-ink);
+}
+
+.listHead p {
+    margin: 0.35rem 0 0;
+    color: var(--clr-muted);
+}
+
+/* ---------- Search ---------- */
+
+.searchBar {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.searchBar input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    background: white;
+    color: var(--clr-ink);
+    font: inherit;
+    outline: none;
+    box-shadow: 0 0 0.2em 3px
+        color-mix(in srgb, var(--clr-accent), transparent 96%);
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.searchBar input:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--clr-accent),
+        var(--clr-border) 55%
+    );
+}
+
+.searchBar input:focus {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+/* ---------- VirtuosoGrid ---------- */
+
+.cards {
+    width: 100%;
+    height: 70vh;
+    min-height: 540px;
+    overflow: auto;
+}
+
+.gridItem {
+    display: flex;
+    flex: 0 0 33.333333%;
+    box-sizing: border-box;
+    width: 33.333333%;
+    padding: 0.5rem;
+}
+
+.gridList {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+}
+
+/* ---------- Group cards ---------- */
+
+.card {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0.75rem;
+    width: 100%;
+    height: 200px;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    background: white;
+    transition:
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.card:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--clr-accent),
+        var(--clr-border) 65%
+    );
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+.cardTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.cardTop h4 {
+    font-size: 1rem;
+    color: var(--clr-ink);
+}
+
+.rolePill {
+    padding: 0.45rem 0.7rem;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--clr-accent), white 82%);
+    color: var(--clr-accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.metaGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+}
+
+.ownerList {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0.5rem;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.ownerChip {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--clr-card-bg), white 8%);
+    font-size: 0.76rem;
+    color: var(--clr-ink);
+}
+
+/* ---------- Card actions ---------- */
+
+.cardActions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.cardActions button {
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--clr-accent);
+    border-radius: 4px;
+    background: var(--clr-accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        filter 0.18s ease,
+        transform 0.12s ease;
+}
+
+.cardActions button:hover {
+    filter: brightness(0.95);
+}
+
+.cardActions button:active {
+    transform: translateY(1px);
+}
+
+.cardActions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* View button */
+
+.viewButton {
+    background: transparent !important;
+    color: var(--clr-accent) !important;
+    border-color: var(--clr-accent) !important;
+}
+
+.viewButton:hover {
+    background: color-mix(
+        in srgb,
+        var(--clr-accent),
+        white 92%
+    ) !important;
+}
+
+/* Delete / danger */
+
+.dangerButton {
+    border-color: #b42318 !important;
+    background: #b42318 !important;
+    color: #fff !important;
+}
+
+.dangerButton:hover {
+    filter: brightness(0.92);
+}
+
+/* ---------- Member panel ---------- */
+
+.memberPanel {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--clr-card-bg), white 2%),
+        white
+    );
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+}
+
+.memberPanelHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.memberPanelHead h3,
+.memberPanelHead h4 {
+    margin: 0;
+}
+
+.memberPanelBadge {
+    padding: 0.45rem 0.7rem;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--clr-accent), white 82%);
+    color: var(--clr-accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+/* ---------- Member form ---------- */
+
+.memberForm {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+    background: white;
+}
+
+.memberFormGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.memberFormGrid label {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--clr-muted);
+}
+
+.memberFormGrid input,
+.memberFormGrid select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    outline: none;
+    background: white;
+    font: inherit;
+    color: var(--clr-ink);
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.memberFormGrid input:hover,
+.memberFormGrid select:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--clr-accent),
+        var(--clr-border) 55%
+    );
+}
+
+.memberFormGrid input:focus,
+.memberFormGrid select:focus {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+.memberFormActions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.memberFormActions > button:not(.cancelButton) {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--clr-accent);
+    border-radius: 4px;
+    background: var(--clr-accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        filter 0.18s ease,
+        transform 0.12s ease;
+}
+
+.memberFormActions > button:not(.cancelButton):hover {
+    filter: brightness(0.95);
+}
+
+.memberFormActions > button:not(.cancelButton):active {
+    transform: translateY(1px);
+}
+
+.memberFormActions > button:not(.cancelButton):disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---------- Member list controls ---------- */
+
+.memberListActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--clr-card-bg), white 6%);
+}
+
+.memberCountPill {
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--clr-card-bg), white 10%);
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+}
+
+/*
+ * SEND MAGIC LINKS (member list CTA)
+ *
+ * Primary action for the selected-group view: sends invitations
+ * to whichever pending members are checked in the list below.
+ */
+.sendLinksButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.75rem 1.1rem;
+    border: 1px solid var(--clr-accent);
+    border-radius: 4px;
+    background: var(--clr-accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        filter 0.18s ease,
+        transform 0.12s ease,
+        box-shadow 0.18s ease;
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--clr-accent), transparent 78%);
+}
+
+.sendLinksButton:hover:not(:disabled) {
+    filter: brightness(0.95);
+}
+
+.sendLinksButton:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.sendLinksButton:disabled {
+    border-color: var(--clr-border);
+    background: color-mix(in srgb, var(--clr-card-bg), white 10%);
+    color: var(--clr-muted);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* ---------- Invitations ---------- */
+
+.invitePanel {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--clr-card-bg), white 3%);
+}
+
+.invitePanelHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.invitePanelHead h4 {
+    margin: 0;
+}
+
+/*
+ * SEND MAGIC LINKS
+ *
+ * Explicitly styled instead of inheriting the generic primary
+ * button styling.
+ */
+.invitePanelHead button,
+.invitePanel > button {
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--clr-accent);
+    border-radius: 4px;
+    background: var(--clr-accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        filter 0.18s ease,
+        transform 0.12s ease;
+}
+
+.invitePanelHead button:hover,
+.invitePanel > button:hover {
+    filter: brightness(0.95);
+}
+
+.invitePanelHead button:active,
+.invitePanel > button:active {
+    transform: translateY(1px);
+}
+
+.invitePanelHead button:disabled,
+.invitePanel > button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.inviteList {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.inviteRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    background: white;
+}
+
+.inviteLink {
+    margin: 0.25rem 0 0;
+    font-size: 0.82rem;
+    color: var(--clr-muted);
+    word-break: break-all;
+}
+
+.inviteActions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.inviteActions button {
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    background: white;
+    color: var(--clr-ink);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.inviteActions button:hover {
+    background: color-mix(in srgb, var(--clr-card-bg), white 5%);
+}
+
+/* ---------- Member cards ---------- */
+
+.memberList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.9rem;
+}
+
+.memberCard {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    background: white;
+    transition:
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.memberCard:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--clr-accent),
+        var(--clr-border) 65%
+    );
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.memberCardTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.memberCard h4 {
+    margin: 0.2rem 0;
+    font-size: 1rem;
+    color: var(--clr-ink);
+}
+
+.memberSelectLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+    user-select: none;
+}
+
+.memberEmail {
+    margin: 0.25rem 0 0;
+    color: var(--clr-muted);
+    font-size: 0.9rem;
+}
+
+.memberRoleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.memberStatusGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.memberRoleTag,
+.memberStatusTag {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+.memberRoleTag {
+    color: var(--clr-ink);
+    background: color-mix(in srgb, var(--clr-card-bg), white 8%);
+}
+
+.memberStatusTag {
+    color: var(--clr-muted);
+    background: color-mix(in srgb, var(--clr-card-bg), white 12%);
+}
+
+.memberRoleRow select {
+    min-width: 120px;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    outline: none;
+    background: white;
+    font: inherit;
+    color: var(--clr-ink);
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.memberRoleRow select:focus {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+.memberActions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.memberActions button:not(.cancelButton) {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--clr-accent);
+    border-radius: 4px;
+    background: var(--clr-accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter 0.18s ease;
+}
+
+.memberActions button:not(.cancelButton):hover {
+    filter: brightness(0.95);
+}
+
+/* ---------- Empty state ---------- */
+
+.emptyState {
+    padding: 1.2rem;
+    border: 1px dashed var(--clr-border);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--clr-card-bg), white 5%);
+    color: var(--clr-muted);
+    text-align: center;
+}
+
+/* ---------- VirtuosoGrid responsive ---------- */
+
+@media (min-width: 901px) {
+    .gridItem {
+        flex-basis: 33.333333%;
+        width: 33.333333%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .gridItem {
+        flex-basis: 50%;
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        height: 65vh;
+        min-height: 280px;
+    }
+
+    .gridItem {
+        flex-basis: 100%;
+        width: 100%;
+        padding: 0.35rem 0;
+    }
+}
+
+/* ---------- General responsive ---------- */
+
+@media (max-width: 900px) {
+    .formGrid,
+    .metaGrid,
+    .memberFormGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .formHead,
+    .cardTop,
+    .memberPanelHead {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summaryRow {
+        flex-direction: column;
+    }
+
+    .cardActions,
+    .memberActions,
+    .memberFormActions,
+    .formActions {
+        justify-content: stretch;
+    }
+
+    .cardActions button,
+    .memberActions button,
+    .memberFormActions button,
+    .formActions button {
+        flex: 1 1 auto;
+    }
+
+    .memberRoleRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .memberRoleRow select {
+        width: 100%;
+    }
+
+    .memberCardTop,
+    .inviteRow,
+    .memberListActions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .memberListActions button,
+    .inviteActions button {
+        width: 100%;
+    }
+
+    .invitePanelHead {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .invitePanelHead button,
+    .invitePanel > button {
+        width: 100%;
+    }
+
+    .inviteActions {
+        width: 100%;
+    }
+
+    .memberFormActions .cancelButton,
+    .formActions .cancelButton {
+        flex: 0 0 auto;
+    }
+}

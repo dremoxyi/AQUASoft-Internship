@@ -1,0 +1,351 @@
+/* ---------- Layout states ---------- */
+
+.loading,
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 300px;
+  text-align: center;
+  color: var(--clr-muted);
+  font-size: 1.05rem;
+}
+
+.empty h2 {
+  color: var(--clr-ink);
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.empty p {
+  margin: 0;
+  color: var(--clr-muted);
+}
+
+/* ---------- Results header ---------- */
+
+.results {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  padding: 1.5rem 2rem;
+  background: var(--clr-bg);
+}
+
+.title {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--clr-ink);
+}
+
+.title span {
+  color: var(--clr-accent);
+  font-weight: 700;
+}
+
+/* --------- Button ShowAll ---------- */
+
+.showAllButton {
+  --button-offset: 20px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--clr-accent);
+  background: white;
+  padding: 14px 34px;
+  border: none;
+  clip-path: polygon(
+    12% 0,
+    100% 0,
+    88% 100%,
+    0 100%
+  );
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+  transform: translateY(var(--button-offset));
+}
+
+.showAllButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--clr-accent);
+  clip-path: inherit;
+  z-index: -2;
+}
+
+.showAllButton::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: white;
+  clip-path: inherit;
+  z-index: -1;
+  transition: background 0.2s ease;
+}
+
+.showAllButton:hover {
+  color: white;
+  transform: translateY(calc(var(--button-offset) - 2px));
+  box-shadow:
+    0 8px 20px color-mix(
+      in srgb,
+      var(--clr-accent),
+      transparent 55%
+    );
+}
+
+.showAllButton:hover::after {
+  background: var(--clr-accent);
+}
+
+.showAllButton:active {
+  transform: translateY(calc(var(--button-offset) + 1px)) scale(0.98);
+}
+
+/* ---------- Grid / virtualized list container ---------- */
+
+.grid {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---------- Hotel card (whole card is the link) ---------- */
+/* The card is a subtle parallelogram (skewed), the content inside is
+   counter-skewed back to 0deg so the text reads normally. */
+
+.card {
+  position: relative;
+  display: block;
+  margin: 1rem 2rem 1rem 2rem;
+  background: var(--clr-card-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+  transform: skewX(var(--skew));
+  transition: 0.2s ease, 0.2s ease;
+  box-shadow:
+      0 1px 2px rgba(0,0,0,.04),
+      0 8px 24px rgba(0,0,0,.03);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: var(--clr-accent);
+  transform: skewX(var(--skew)) translateY(-2px);
+
+  box-shadow:
+      0 6px 18px rgba(0,0,0,.08),
+      0 18px 40px rgba(0,0,0,.06);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--clr-accent);
+  transition: .1s ease;
+}
+
+.card:hover::before{
+    width:6px;
+}
+
+.content {
+  position: relative;
+  transform: skewX(calc(var(--skew) * -1));
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.1rem 1.4rem 1.1rem 1.6rem;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing:-.02em;
+  font-weight: 700;
+  color: var(--clr-ink);
+  line-height: 1.3;
+}
+
+.location {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* AQUA SCORE */
+
+.aquaScore::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: rgba(255,255,255,.35);
+}
+
+.aquaScore {
+  overflow: hidden;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+
+  padding: .45rem .85rem;
+
+  background: linear-gradient(
+    135deg,
+    #17bebb,
+    #0f8fa3
+  );
+  color: white;
+  border-radius: 2px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+
+  transform: skewX(var(--skew));
+  transform-origin: center;
+
+  box-shadow:
+    0 3px 10px rgba(23,190,187,.25);
+}
+
+.aquaScore::after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: rgba(255,255,255,.35);
+}
+/* ---------- Footer row: stars (left) / price (right) ---------- */
+
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  min-height: 1.6rem;
+  gap: 1rem;
+}
+
+.rating {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.stars {
+  color: var(--clr-yellow);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+.ratingText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--clr-rating-text);
+}
+
+.price {
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+  white-space: nowrap;
+}
+
+.priceAmount {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-accent);
+  margin: 0 0.15rem;
+}
+
+
+.button {
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  transform: translate(-50%, -45%);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  background: var(--clr-card-bg);
+  padding: 0.2rem 0.7rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  bottom: -6px;
+  height: 10px;
+  background: var(--clr-accent);
+  opacity: 0.55;
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.card:hover .button {
+  opacity: 1;
+  transform: translate(-50%, -50%), translateX(3px);
+  
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .results {
+    padding: 1rem;
+  }
+
+  .card {
+    transform: none;
+    margin: 0 0 1rem 0;
+  }
+
+  .content {
+    transform: none;
+    padding: 1rem;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+  }
+}

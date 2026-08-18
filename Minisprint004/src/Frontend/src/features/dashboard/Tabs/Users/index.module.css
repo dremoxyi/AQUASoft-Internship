@@ -1,0 +1,386 @@
+.panel {
+	display: grid;
+	gap: 1.4rem;
+}
+
+/* ---------- Summary ---------- */
+
+.summaryRow {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.summaryRow > div {
+	min-width: 160px;
+	padding: 1rem 1.1rem;
+	border: 1px solid var(--clr-border);
+	background: color-mix(in srgb, var(--clr-card-bg), white 4%);
+}
+
+.kicker {
+	margin: 0 0 0.35rem;
+	font-size: 0.72rem;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: var(--clr-muted);
+}
+
+.summaryRow strong {
+	font-size: 1.35rem;
+	color: var(--clr-ink);
+}
+
+/* ---------- User form ---------- */
+
+.form {
+	padding: 1.25rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 8px;
+	background: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--clr-card-bg), white 2%),
+		white
+	);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+}
+
+.formHead {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.formHead h3,
+.listHead h3,
+.cardTop h4 {
+	margin: 0;
+}
+
+.ghostButton {
+	padding: 0.65rem 1rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 4px;
+	background: white;
+	color: var(--clr-ink);
+	cursor: pointer;
+	transition: background 0.18s ease;
+}
+
+.ghostButton:hover {
+	background: color-mix(in srgb, var(--clr-card-bg), white 8%);
+}
+
+.formGrid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.9rem;
+}
+
+.formGrid label {
+	display: grid;
+	gap: 0.35rem;
+	font-size: 0.88rem;
+	color: var(--clr-muted);
+}
+
+.formGrid input,
+.formGrid select {
+	padding: 0.8rem 0.9rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 4px;
+	outline: none;
+	background: white;
+	font: inherit;
+	color: var(--clr-ink);
+	transition:
+		border-color 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.formGrid input:focus,
+.formGrid select:focus {
+	border-color: var(--clr-accent);
+	box-shadow: 0 0 0 3px
+		color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+.error {
+	margin: 0.9rem 0 0;
+	color: #b42318;
+}
+
+.formActions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1rem;
+}
+
+/* ---------- User list ---------- */
+
+.listArea {
+	display: grid;
+	gap: 1rem;
+}
+
+.listHead p {
+	margin: 0.35rem 0 0;
+	color: var(--clr-muted);
+}
+
+/*
+ * VirtuosoGrid viewport.
+ *
+ * IMPORTANT:
+ * Do not use CSS grid here.
+ * VirtuosoGrid owns the scrolling/virtualization and its List
+ * component should be a wrapping flex container.
+ *
+ * The height gives Virtuoso a measurable viewport.
+ */
+.cards {
+	width: 100%;
+	height: 70vh;
+	min-height: 380px;
+	overflow: auto;
+}
+
+/*
+ * This class belongs on the VirtuosoGrid Item component.
+ *
+ * The item wrapper determines the number of columns.
+ */
+.gridItem {
+	display: flex;
+	flex: 0 0 33.333333%;
+	box-sizing: border-box;
+	width: 33.333333%;
+	padding: 0.5rem;
+}
+
+/*
+ * Virtuoso's List component should be a wrapping flex container.
+ *
+ * This class is optional if your GridList already applies these
+ * styles inline, but keeping it here makes the CSS self-documenting.
+ */
+.gridList {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	width: 100%;
+}
+
+/* ---------- User cards ---------- */
+
+.searchBar {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.searchBar input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.8rem 0.9rem;
+	border: 1px solid var(--clr-border);
+	background: white;
+	color: var(--clr-ink);
+	font: inherit;
+	outline: none;
+
+	box-shadow: 0 0 0.2em 3px
+		color-mix(in srgb, var(--clr-accent),transparent 96%);
+}
+
+.searchBar input:focus {
+	border-color: var(--clr-accent);
+	box-shadow: 0 0 0 3px
+		color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+.card {
+	display: grid;
+	height: 200px;
+	gap: 0.75rem;
+	width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+	padding: 1rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 8px;
+	background: white;
+}
+
+.card:hover {
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.cardTop {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.cardTop h4 {
+	font-size: 1rem;
+	color: var(--clr-ink);
+}
+
+.rolePill {
+	padding: 0.45rem 0.7rem;
+	background: color-mix(in srgb, var(--clr-accent), white 82%);
+	color: var(--clr-accent);
+	font-size: 0.78rem;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.location {
+	margin: 0;
+	color: var(--clr-muted);
+	font-size: 0.92rem;
+}
+
+.metaGrid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0.5rem;
+	font-size: 0.8rem;
+	color: var(--clr-muted);
+}
+
+.cardActions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+/* ---------- Shared controls ---------- */
+
+.formActions button,
+.cardActions button {
+	padding: 0.8rem 1rem;
+	border: 1px solid var(--clr-accent);
+	border-radius: 4px;
+	background: var(--clr-accent);
+	color: #fff;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition: filter 0.18s ease;
+}
+
+.formActions button:hover,
+.cardActions button:hover {
+	filter: brightness(0.95);
+}
+
+.formActions button:disabled,
+.cardActions button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.viewButton {
+	background: transparent !important;
+	color: var(--clr-accent) !important;
+	border-color: var(--clr-accent) !important;
+}
+
+.viewButton:hover {
+	background: color-mix(in srgb, var(--clr-accent), white 92%) !important;
+}
+
+.dangerButton {
+	border-color: #b42318 !important;
+	background: #b42318 !important;
+}
+
+.dangerButton:hover {
+	filter: brightness(0.92);
+}
+
+/* ---------- Empty state ---------- */
+
+.emptyState {
+	padding: 1.2rem;
+	border: 1px dashed var(--clr-border);
+	border-radius: 8px;
+	background: color-mix(in srgb, var(--clr-card-bg), white 5%);
+	color: var(--clr-muted);
+	text-align: center;
+}
+
+/* ---------- VirtuosoGrid responsive layout ---------- */
+
+/*
+ * Desktop:
+ * 3 cards per row.
+ */
+@media (min-width: 901px) {
+	.gridItem {
+		flex-basis: 33.333333%;
+		width: 33.333333%;
+	}
+}
+
+/*
+ * Tablet:
+ * 2 cards per row.
+ */
+@media (min-width: 601px) and (max-width: 900px) {
+	.gridItem {
+		flex-basis: 50%;
+		width: 50%;
+	}
+}
+
+/*
+ * Mobile:
+ * 1 card per row.
+ */
+@media (max-width: 600px) {
+	.cards {
+		height: 65vh;
+		min-height: 280px;
+	}
+
+	.gridItem {
+		flex-basis: 100%;
+		width: 100%;
+		padding: 0.35rem 0;
+	}
+}
+
+/* ---------- General responsive layout ---------- */
+
+@media (max-width: 900px) {
+	.formGrid,
+	.metaGrid {
+		grid-template-columns: 1fr;
+	}
+
+	.formHead,
+	.cardTop {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.summaryRow {
+		flex-direction: column;
+	}
+
+	.cardActions,
+	.formActions {
+		justify-content: stretch;
+	}
+
+	.cardActions button,
+	.formActions button {
+		width: 100%;
+	}
+}

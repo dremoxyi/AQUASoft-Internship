@@ -1,0 +1,250 @@
+.navbar {
+    background-color: #ffddc4;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 76px;
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+}
+
+/* ==================== Slots ==================== */
+
+.leftSlot {
+    justify-self: start;
+}
+
+.centerSlot {
+    justify-self: center;
+    width: min(700px, 90%);
+}
+
+.rightSlot {
+    justify-self: end;
+}
+
+
+/* ==================== Logo ==================== */
+
+.logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo img {
+    width: 140px;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.logo img:hover {
+    transform: scale(1.15);
+}
+
+
+/* ==================== Search ==================== */
+
+.searchWrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.searchBox {
+    position: relative;
+    transform: perspective(800px) rotateX(2deg) skewX(-8deg);
+}
+
+.searchBox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #a54500;
+    border: 2px solid #ff8b38;
+    border-radius: 2px;
+    z-index: -1;
+}
+
+.searchInput {
+    width: 100%;
+    background: transparent;
+    color: #f5ddcc;
+    padding: 12px 20px 12px 48px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+
+    transform: perspective(800px) rotateX(-2deg) skewX(8deg);
+}
+
+.searchIcon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%) skewX(8deg);
+    font-size: 1.1rem;
+}
+
+
+/* ==================== User Menu ==================== */
+
+.userSection {
+    min-width: 195px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.username {
+    color: var(--clr-accent);
+}
+
+.authButtons {
+    display: flex;
+    gap: 12px;
+}
+
+.loginBtn,
+.registerBtn {
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.loginBtn {
+    border: 2px solid var(--clr-accent);
+    color: var(--clr-accent);
+}
+
+.loginBtn:hover {
+    background-color: #fbf1ee;
+}
+
+.registerBtn {
+    background-color: var(--clr-accent);
+    color: white;
+}
+
+.registerBtn:hover {
+    background-color: color-mix(in srgb, var(--clr-accent) 75%, rgb(205, 0, 0));
+}
+
+
+/* Logged in user */
+
+.userMenu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.welcome {
+    font-weight: 500;
+    color: #374151;
+}
+
+.dashboardLink,
+.profileLink,
+.logoutBtn {
+    width: 100px;
+    height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* Dashboard */
+
+.dashboardLink {
+    background-color: #ffc108;
+    color: white;
+}
+
+.dashboardLink:hover {
+    background-color: color-mix(in srgb, #ffc108 85%, black);
+}
+
+
+/* Profile */
+
+.profileLink {
+    background-color: var(--clr-accent);
+    color: white;
+}
+
+.profileLink:hover {
+    background-color: color-mix(in srgb, var(--clr-accent) 85%, black);
+}
+
+
+/* Logout */
+.logoutBtn {
+    font-family: inherit;
+    color: white;
+    background-color: #ef4444;
+}
+
+.logoutBtn:hover {
+    background-color: #dc2626;
+}
+
+
+/* ==================== Responsive ==================== */
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 16px;
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .centerSlot {
+        width: min(450px, 90%);
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .container {
+        height: auto;
+        min-height: 76px;
+        gap: 12px;
+    }
+
+    .logo img {
+        width: 110px;
+    }
+
+    .centerSlot {
+        width: 100%;
+    }
+
+    .userSection {
+        gap: 8px;
+    }
+}

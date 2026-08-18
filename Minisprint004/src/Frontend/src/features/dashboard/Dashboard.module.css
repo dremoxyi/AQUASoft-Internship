@@ -1,0 +1,440 @@
+/* =========================================================
+   Dashboard Layout
+========================================================= */
+
+.page {
+	min-height: 100vh;
+	padding: 2rem;
+  	background: var(--clr-dashboard);
+	color: var(--clr-ink);
+}
+
+
+.loading {
+	min-height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	color: var(--clr-muted);
+	font-size: 1rem;
+}
+
+
+.header {
+	max-width: 1280px;
+	margin: 0 auto 2rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	padding: 1.5rem 1.8rem;
+
+	background: var(--clr-card-bg);
+
+	border: 1px solid var(--clr-border);
+
+	box-shadow:
+		0 8px 24px rgba(0,0,0,.04);
+
+	position: relative;
+	overflow: hidden;
+}
+
+
+.header::before {
+	content: "";
+
+	position: absolute;
+
+	left: 0;
+	top: 0;
+
+	height: 100%;
+	width: 5px;
+
+	background: var(--clr-accent);
+}
+
+
+.header h1 {
+	margin: 0;
+
+	font-size: 2rem;
+	font-weight: 700;
+
+	letter-spacing: -.03em;
+}
+
+
+.header p {
+	margin: .4rem 0 0;
+
+	color: var(--clr-muted);
+	font-size: .9rem;
+}
+
+
+.header strong {
+	color: var(--clr-accent);
+}
+
+/* =========================================================
+   Home Button
+========================================================= */
+
+
+.homeButton {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	gap: .4rem;
+
+	padding: .65rem 1.2rem;
+
+	color: var(--clr-accent);
+	background: white;
+
+	text-decoration: none;
+
+	font-weight: 700;
+	font-size: .85rem;
+
+	border: 1px solid var(--clr-border);
+
+	transition: .2s ease;
+}
+
+
+.homeButton:hover {
+	border-color: var(--clr-accent);
+
+	transform: translateY(-2px);
+
+	box-shadow:
+		0 8px 20px color-mix(
+			in srgb,
+			var(--clr-accent),
+			transparent 70%
+		);
+}
+
+/* =========================================================
+   No Access
+========================================================= */
+
+.noAccess {
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 3rem 2rem;
+}
+
+.noAccess h2 {
+	margin-bottom: 0.75rem;
+}
+
+.noAccess p {
+	max-width: 600px;
+	margin: 0 0 2rem;
+	line-height: 1.6;
+	opacity: 0.8;
+}
+
+.homeButtonLarge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.9rem 2.25rem;
+	min-width: 180px;
+
+	background: var(--clr-accent);
+	color: white;
+	border: none;
+	border-radius: 4px;
+
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+
+	box-shadow: 0 4px 12px rgba(247, 108, 29, 0.25);
+
+	transition:
+		background-color 0.2s ease,
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.homeButtonLarge:hover {
+	background: #df5b14;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(247, 108, 29, 0.35);
+}
+
+.homeButtonLarge:active {
+	transform: scale(0.98);
+	box-shadow: 0 3px 8px rgba(247, 108, 29, 0.25);
+}
+
+
+
+
+
+/* =========================================================
+   Module Navigation
+========================================================= */
+
+
+.navigation {
+	max-width: 1280px;
+
+	margin: 0 auto 2rem;
+
+	display: flex;
+	gap: 1rem;
+}
+
+
+.navButton {
+	position: relative;
+
+	flex: 1;
+
+	padding: 1rem 1.5rem;
+
+	background: var(--clr-card-bg);
+
+	border: 1px solid var(--clr-border);
+
+	color: var(--clr-muted);
+
+	font-size: .95rem;
+	font-weight: 700;
+
+	cursor: pointer;
+
+	transition: .2s ease;
+
+	clip-path: polygon(
+		8% 0,
+		100% 0,
+		92% 100%,
+		0 100%
+	);
+}
+
+
+.navButton:hover {
+	color: var(--clr-ink);
+
+	border-color: var(--clr-accent);
+}
+
+
+.navButton.active {
+	background: var(--clr-accent);
+
+	color: white;
+
+	border-color: var(--clr-accent);
+
+	box-shadow:
+		0 8px 20px color-mix(
+			in srgb,
+			var(--clr-accent),
+			transparent 65%
+		);
+}
+
+
+
+/* =========================================================
+   Main Content
+========================================================= */
+
+
+.content {
+	max-width: 1280px;
+
+	margin: 0 auto;
+
+	background: var(--clr-card-bg);
+
+	border: 1px solid var(--clr-border);
+
+	padding: 2rem;
+
+	min-height: 400px;
+
+	box-shadow:
+		0 1px 2px rgba(0,0,0,.04),
+		0 10px 30px rgba(0,0,0,.04);
+}
+
+
+
+/* =========================================================
+   Section Header
+========================================================= */
+
+
+.sectionHeader {
+	display: flex;
+
+	align-items: center;
+	justify-content: space-between;
+
+	gap: 1rem;
+
+	margin-bottom: 2rem;
+}
+
+
+.sectionHeader h2 {
+	margin: 0;
+
+	font-size: 1.6rem;
+
+	letter-spacing: -.02em;
+}
+
+
+
+/* =========================================================
+   Actions
+========================================================= */
+
+
+.actions {
+	display: flex;
+	gap: .8rem;
+}
+
+
+.actions button {
+	position: relative;
+
+	padding: .7rem 1.3rem;
+
+	font: inherit;
+
+	font-size: .85rem;
+	font-weight: 700;
+
+	cursor: pointer;
+
+	transition: .2s ease;
+
+	text-transform: uppercase;
+	letter-spacing: .03em;
+}
+
+
+.actions button:first-child {
+	background: var(--clr-accent);
+
+	color: white;
+
+	border: 1px solid var(--clr-accent);
+}
+
+
+.actions button:first-child:hover {
+	transform: translateY(-2px);
+
+	box-shadow:
+		0 8px 20px color-mix(
+			in srgb,
+			var(--clr-accent),
+			transparent 60%
+		);
+}
+
+
+.actions button:last-child {
+	background: white;
+
+	color: var(--clr-ink);
+
+	border: 1px solid var(--clr-border);
+}
+
+
+.actions button:last-child:hover {
+	color: var(--clr-accent);
+
+	border-color: var(--clr-accent);
+}
+
+
+
+
+
+/* =========================================================
+   Placeholder / Future Lists
+========================================================= */
+
+
+.listPlaceholder {
+	min-height: 220px;
+
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+
+	border: 1px dashed var(--clr-border);
+
+	color: var(--clr-muted);
+
+	font-size: .9rem;
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+
+@media(max-width:900px) {
+
+	.page {
+		padding: 1rem;
+	}
+
+
+	.header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+
+	.navigation {
+		flex-direction: column;
+	}
+
+
+	.sectionHeader {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+
+	.actions {
+		width: 100%;
+		flex-wrap: wrap;
+	}
+
+
+	.actions button {
+		flex: 1;
+	}
+
+}

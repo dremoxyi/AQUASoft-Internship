@@ -1,0 +1,18 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 122" width="390" height="122">
+	<defs>
+		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0,-122.244,236.679,0,117.66,122.196)">
+			<stop offset="0" stop-color="#f76c1d"/>
+			<stop offset="1" stop-color="#f9d760"/>
+		</linearGradient>
+		<linearGradient id="g2" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0,-122.244,236,0,272,122.196)">
+			<stop offset="0" stop-color="#f76c1d"/>
+			<stop offset="1" stop-color="#f9d760"/>
+		</linearGradient>
+	</defs>
+	<style>
+		.s0 { fill: url(#g1) } 
+		.s1 { fill: url(#g2) } 
+	</style>
+	<path id="Shape 1" class="s0" d="m-0.68 122.2l100.68-122.25h35l101 122.25h-29l-27-32.69h-105l17-20.43h71l-41-50.4h-9l-69 84.63h128l16 18.89z"/>
+	<path id="Layer 1" class="s1" d="m210 69.08h30l28 34.23h8l41-49.31h-119l-44-54.05h236l-15 18.73h-176l11 14.3h153l-73 89.22h-37z"/>
+</svg>
