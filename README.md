@@ -9,6 +9,7 @@ You can clone this repository with `git clone https://github.com/dremoxyi/AQUASo
 - [MiniSprint 001](#minisprint-001)
 - [MiniSprint 002](#minisprint-002)
 - [MiniSprint 003](#minisprint-003)
+- [MiniSprint 004](#minisprint-004)
 - More coming...
 
 ## MiniSprint 001
