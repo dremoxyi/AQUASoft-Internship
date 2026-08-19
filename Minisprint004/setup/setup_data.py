@@ -1,3 +1,17 @@
+import importlib.util
+import subprocess
+import sys
+
+if importlib.util.find_spec("kagglehub") is None:
+    print("> kagglehub not found, installing...")
+    subprocess.check_call([
+        sys.executable,
+        "-m",
+        "pip",
+        "install",
+        "kagglehub"
+    ])
+
 import kagglehub
 import os
 import shutil
