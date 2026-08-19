@@ -1,5 +1,5 @@
 import express from "express";
-import { JWT_Auth } from "../../middlewares/tk_auth.ts";
+import { Bearer_Auth ,JWT_Auth } from "../../middlewares/tk_auth.ts";
 import UserController from "../../controllers/UserController.ts";
 import type {Router} from 'express'
 

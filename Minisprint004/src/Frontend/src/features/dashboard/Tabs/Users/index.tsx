@@ -110,6 +110,7 @@ export default function UsersTab({ role, user, rolePermissions }: Props) {
 	const [loading, setLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [listError, setListError] = useState<string | null>(null);
 	const [mode, setMode] = useState<"view" | "create" | "edit">("view");
 	const [editingId, setEditingId] = useState<number | null>(null);
 	const [form, setForm] = useState<UserFormState>(EMPTY_FORM);
@@ -120,13 +121,14 @@ export default function UsersTab({ role, user, rolePermissions }: Props) {
 		(async () => {
 			try {
 				setLoading(true);
+				setListError(null);
 				const data = await getUsers();
 				if (mounted) {
 					setUsers(Array.isArray(data) ? data : []);
 				}
 			} catch (err) {
 				if (mounted) {
-					setError(err instanceof Error ? err.message : "Unable to load users");
+					setListError(err instanceof Error ? err.message : "Unable to load users");
 				}
 			} finally {
 				if (mounted) {
@@ -459,8 +461,8 @@ export default function UsersTab({ role, user, rolePermissions }: Props) {
 
 				{loading ? (
 					<div className={styles.emptyState}>Loading users...</div>
-				) : error ? (
-					<div className={styles.emptyState}>{error}</div>
+				) : listError ? (
+					<div className={styles.emptyState}>{listError}</div>
 				) : visibleUsers.length === 0 ? (
 					<div className={styles.emptyState}>No users available.</div>
 				) : (

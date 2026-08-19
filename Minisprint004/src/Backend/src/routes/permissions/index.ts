@@ -1,6 +1,6 @@
 import express from "express";
 import type { Router } from "express";
-import { JWT_Auth } from "../../middlewares/tk_auth.ts";
+import { Bearer_Auth, JWT_Auth } from "../../middlewares/tk_auth.ts";
 import type RolePermissionController from "../../controllers/PermissionController.ts";
 
 const router: Router = express.Router();

@@ -145,6 +145,7 @@ export default function GroupsTab({ role, user, rolePermissions }: Props) {
 	const [loading, setLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [listError, setListError] = useState<string | null>(null);
 	const [mode, setMode] = useState<"view" | "create" | "edit">("view");
 	const [editingId, setEditingId] = useState<number | null>(null);
 	const [form, setForm] = useState<GroupFormState>(EMPTY_FORM);
@@ -162,13 +163,15 @@ export default function GroupsTab({ role, user, rolePermissions }: Props) {
 		(async () => {
 			try {
 				setLoading(true);
+				setListError(null);
+
 				const data = await getHotelGroups();
 				if (mounted) {
 					setGroups(Array.isArray(data) ? data : []);
 				}
 			} catch (err) {
 				if (mounted) {
-					setError(err instanceof Error ? err.message : "Unable to load hotel groups");
+					setListError(err instanceof Error ? err.message : "Unable to load hotel groups");
 				}
 			} finally {
 				if (mounted) {
@@ -750,8 +753,8 @@ export default function GroupsTab({ role, user, rolePermissions }: Props) {
 
 				{loading ? (
 					<div className={styles.emptyState}>Loading groups...</div>
-				) : error ? (
-					<div className={styles.emptyState}>{error}</div>
+				) : listError ? (
+					<div className={styles.emptyState}>{listError}</div>
 				) : visibleGroups.length === 0 ? (
 					<div className={styles.emptyState}>No hotel groups available.</div>
 				) : (

@@ -1,5 +1,5 @@
 import express from "express";
-import { JWT_Auth } from "../../../middlewares/tk_auth.ts";
+import { Bearer_Auth, JWT_Auth } from "../../../middlewares/tk_auth.ts";
 import HotelGroupController from "../../../controllers/HotelGroupController.ts";
 import type {Router} from 'express'
 

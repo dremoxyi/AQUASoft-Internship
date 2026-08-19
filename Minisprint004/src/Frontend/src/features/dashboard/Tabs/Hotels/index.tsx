@@ -157,6 +157,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 	const [groupLoading, setGroupLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [listError, setListError] = useState<string | null>(null);
 	const [mode, setMode] = useState<"view" | "create" | "edit">("view");
 	const [editingId, setEditingId] = useState<number | null>(null);
 	const [form, setForm] = useState<HotelFormState>(EMPTY_FORM);
@@ -169,6 +170,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 		(async () => {
 			try {
 				setLoading(true);
+				setListError(null)
 				const data = await getHotels();
 
 				if (mounted) {
@@ -176,7 +178,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 				}
 			} catch (err) {
 				if (mounted) {
-					setError(err instanceof Error ? err.message : "Unable to load hotels");
+					setListError(err instanceof Error ? err.message : "Unable to load hotels");
 				}
 			} finally {
 				if (mounted) {
@@ -397,16 +399,31 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 			})),
 		};
 
-		if (
-			!payload.HotelName ||
-			!payload.Address ||
-			Number.isNaN(payload.Longitude) ||
-			Number.isNaN(payload.Latitude) ||
-			!payload.CityName ||
-			!payload.ProvinceName ||
-			!payload.CountryName
-		) {
-			setError("Hotel name, address, city, province, country, longitude, and latitude are required.");
+		const errors = [];
+
+		if (!payload.HotelName) {
+			errors.push("Hotel name");
+		}
+		if (!payload.Address) {
+			errors.push("Address");
+		}
+		if (Number.isNaN(payload.Longitude)) {
+			errors.push("Longitude");
+		}
+		if (Number.isNaN(payload.Latitude)) {
+			errors.push("Latitude");
+		}
+		if (!payload.CityName) {
+			errors.push("City");
+		}
+		if (!payload.ProvinceName) {
+			errors.push("Province");
+		}
+		if (!payload.CountryName) {
+			errors.push("Country");
+		}
+		if (errors.length > 0) {
+			setError(errors.join(", ")+" is required.");
 			return;
 		}
 
@@ -495,7 +512,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 
 					<div className={styles.formGrid}>
 						<label>
-							<span>Hotel name</span>
+							<span>Hotel name*</span>
 							<input
 								value={form.HotelName}
 								onChange={(e) => handleChange("HotelName", e.target.value)}
@@ -526,7 +543,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 								<span className={styles.mapTitle}>Hotel Location</span>
 								<p className={styles.mapHint}>
 									{"Click the map or drag the marker to adjust coordinates."} <br/>
-									{"If Location Details has been filled, you can also use 'Pinpoint address'"}
+									{"Use 'Pinpoint Address' to pinpoint the map from informations filled in Location Details."}
 								</p>
 							</div>
 								<button
@@ -571,7 +588,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 
 						<div className={styles.formGrid}>
 							<label>
-								<span>Address</span>
+								<span>Address*</span>
 								<input
 									value={form.Address}
 									onChange={(e) => handleChange("Address", e.target.value)}
@@ -579,7 +596,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 							</label>
 
 							<label>
-								<span>City</span>
+								<span>City*</span>
 								<input
 									value={form.CityName}
 									onChange={(e) => handleChange("CityName", e.target.value)}
@@ -587,7 +604,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 							</label>
 
 							<label>
-								<span>Province</span>
+								<span>Province*</span>
 								<input
 									value={form.ProvinceName}
 									onChange={(e) => handleChange("ProvinceName", e.target.value)}
@@ -595,7 +612,7 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 							</label>
 
 							<label>
-								<span>Country</span>
+								<span>Country*</span>
 								<input
 									value={form.CountryName}
 									onChange={(e) => handleChange("CountryName", e.target.value)}
@@ -748,8 +765,8 @@ export default function HotelsTab({ role, user, rolePermissions }: Props) {
 
 				{loading ? (
 					<div className={styles.emptyState}>Loading hotels...</div>
-				) : error ? (
-					<div className={styles.emptyState}>{error}</div>
+				) : listError ? (
+					<div className={styles.emptyState}>{listError}</div>
 				) : visibleHotels.length === 0 ? (
 					<div className={styles.emptyState}>No hotels match your account yet.</div>
 				) : (
