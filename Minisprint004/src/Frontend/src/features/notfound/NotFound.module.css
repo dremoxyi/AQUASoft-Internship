@@ -1,0 +1,136 @@
+.notFound {
+	min-height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background:
+		radial-gradient(
+			circle at top,
+			color-mix(in srgb, var(--clr-accent), #321300 65%),
+			#170900 70%
+		);
+
+	color: var(--clr-card-bg);
+}
+
+.notFoundCard {
+	position: relative;
+
+	width: min(520px, 90%);
+
+	text-align: center;
+
+	padding: 70px 60px;
+
+	background: color-mix(
+		in srgb,
+		var(--clr-accent),
+		#321300 40%
+	);
+
+	border: 1px solid color-mix(
+		in srgb,
+		var(--clr-accent),
+		white 25%
+	);
+
+	transform:
+		perspective(900px)
+		rotateX(2deg)
+		skewX(-4deg);
+
+	box-shadow:
+		0 30px 70px rgba(0,0,0,.35),
+		inset 0 0 40px color-mix(
+			in srgb,
+			var(--clr-accent),
+			transparent 88%
+		);
+}
+
+.notFoundCard > * {
+	transform: skewX(4deg);
+}
+
+.errorCode {
+	margin: 0 0 20px;
+
+	color: var(--clr-accent);
+
+	font-size: 6rem;
+	font-weight: 800;
+
+	letter-spacing: 12px;
+
+	text-shadow:
+		0 8px 30px color-mix(
+			in srgb,
+			var(--clr-accent),
+			transparent 65%
+		);
+}
+
+.notFoundCard h1 {
+	margin: 0 0 18px;
+
+	color: var(--clr-card-bg);
+
+	font-size: 2rem;
+	font-weight: 700;
+
+	letter-spacing: .02em;
+}
+
+.message {
+	margin-bottom: 35px;
+
+	color: var(--clr-card-bg);
+	opacity: .85;
+
+	line-height: 1.6;
+}
+
+.homeButton {
+	display: inline-block;
+
+	padding: .8rem 1.8rem;
+
+	background: var(--clr-accent);
+	color: white;
+
+	text-decoration: none;
+
+	font-weight: 700;
+	letter-spacing: .04em;
+
+	border: 1px solid var(--clr-accent);
+	border-radius: 2px;
+
+	transform: skewX(-8deg);
+
+	transition: .2s ease;
+}
+
+.homeButton:hover {
+	background: color-mix(
+		in srgb,
+		var(--clr-accent),
+		white 15%
+	);
+
+	border-color: color-mix(
+		in srgb,
+		var(--clr-accent),
+		white 15%
+	);
+
+	transform: skewX(-8deg) translateY(-3px);
+	box-shadow:
+		0 8px 20px color-mix(
+			in srgb,
+			var(--clr-accent),
+			transparent 65%
+		);
+}

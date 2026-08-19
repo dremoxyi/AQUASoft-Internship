@@ -1,0 +1,193 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--clr-bg);
+}
+
+.card {
+  width: 100%;
+  max-width: 700px;
+
+  padding: 2rem;
+
+  background: var(--clr-card-bg);
+  border: 2px solid var(--clr-accent);
+  border-left: 10px solid var(--clr-accent);
+  border-radius: 8px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--clr-ink);
+}
+
+.header p {
+  margin-top: .5rem;
+  color: var(--clr-muted);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+
+.fieldHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.fieldLabel {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+}
+
+.resetButton {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--clr-muted);
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.resetButton:disabled {
+  cursor: default;
+  opacity: .4;
+  text-decoration: none;
+}
+
+.field span {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+}
+
+.field input {
+  width: 100%;
+  padding: .8rem 1rem;
+  border: 1px solid var(--clr-border);
+  border-radius: 6px;
+  font: inherit;
+  background: var(--clr-bg);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+}
+
+.helper {
+  margin: 0;
+  font-size: .82rem;
+  color: var(--clr-muted);
+}
+
+.passwordGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.actions {
+  margin-top: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.homeButton,
+.saveButton {
+  padding: .8rem 1.25rem;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color .15s ease,
+    color .15s ease,
+    background-color .15s ease,
+    opacity .15s ease;
+}
+
+.homeButton {
+  border: 1px solid var(--clr-border);
+  background: transparent;
+  color: var(--clr-muted);
+}
+
+.homeButton:hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-ink);
+}
+
+.saveButton {
+  border:none;
+  background: var(--clr-accent);
+  color: white;
+}
+
+.saveButton:disabled {
+  border: 1px solid var(--clr-accent);
+  background: transparent;
+  color: var(--clr-accent);
+  opacity: .6;
+  cursor: default;
+}
+
+.saveButton:not(:disabled):hover {
+  background: color-mix(in srgb, var(--clr-accent) 85%, black);
+}
+
+.message {
+  padding: .75rem 1rem;
+  border-radius: 6px;
+}
+
+.error {
+  background: #fdeaea;
+  color: #a52b2b;
+}
+
+.success {
+  background: #eaf8ec;
+  color: #2d7a46;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .passwordGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}

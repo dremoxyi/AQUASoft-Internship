@@ -1,0 +1,725 @@
+.panel {
+	display: grid;
+	gap: 1.4rem;
+}
+
+/* ---------- Summary ---------- */
+
+.summaryRow {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.summaryRow > div {
+	min-width: 160px;
+	padding: 1rem 1.1rem;
+	border: 1px solid var(--clr-border);
+	background: color-mix(in srgb, var(--clr-card-bg), white 4%);
+}
+
+.kicker {
+	margin: 0 0 0.35rem;
+	font-size: 0.72rem;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: var(--clr-muted);
+}
+
+.summaryRow strong {
+	font-size: 1.35rem;
+	color: var(--clr-ink);
+}
+
+/* ---------- Form ---------- */
+
+.form {
+	padding: 1.25rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 8px;
+	background: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--clr-card-bg), white 2%),
+		white
+	);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+}
+
+.formHead {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.formHead h3,
+.listHead h3,
+.cardTop h4 {
+	margin: 0;
+}
+
+.formGrid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.9rem;
+	margin-bottom: 1rem;
+}
+
+.formGrid label {
+	display: grid;
+	gap: 0.35rem;
+	font-size: 0.88rem;
+	color: var(--clr-muted);
+}
+
+.formGrid input,
+.formGrid select {
+	padding: 0.8rem 0.9rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 4px;
+	outline: none;
+	background: white;
+	font: inherit;
+	color: var(--clr-ink);
+	transition:
+		border-color 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.formGrid input:focus,
+.formGrid select:focus {
+	border-color: var(--clr-accent);
+	box-shadow: 0 0 0 3px
+		color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+/* ---------- Price Offers ---------- */
+
+.priceOffers {
+	display: grid;
+	width: 100%;
+	border: 1px solid var(--clr-border);
+	background: white;
+}
+
+/* One Price Offer = one row */
+
+.priceOfferRow {
+	display: grid;
+	grid-template-columns:
+		minmax(180px, 1.4fr)
+		minmax(120px, 0.8fr)
+		minmax(120px, 0.8fr)
+		auto;
+	align-items: center;
+	gap: 1rem;
+	min-height: 64px;
+	padding: 0.75rem 1rem;
+	box-sizing: border-box;
+	border-bottom: 1px solid var(--clr-border);
+}
+
+.priceOfferRow label {
+	display: grid;
+	gap: 0.35rem;
+	min-width: 0;
+	font-size: 0.78rem;
+	color: var(--clr-muted);
+}
+
+.priceOfferRow input,
+.priceOfferRow select {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.65rem 0.7rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 4px;
+	outline: none;
+	background: white;
+	color: var(--clr-ink);
+	font: inherit;
+	transition:
+		border-color 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.priceOfferRow input:focus,
+.priceOfferRow select:focus {
+	border-color: var(--clr-accent);
+	box-shadow: 0 0 0 3px
+		color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+.priceOfferActions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.5rem;
+	white-space: nowrap;
+}
+
+/* Remove button */
+
+.priceOfferRow .cancelButton {
+	margin-top: 20px;
+	padding: 0.6rem 0.9rem;
+	border: 1px solid #e8b8b3;
+	border-radius: 4px;
+	background: #fff5f4;
+	color: #a34b43;
+	font: inherit;
+	font-weight: 600;
+	white-space: nowrap;
+	cursor: pointer;
+	transition:
+		background-color 0.18s ease,
+		border-color 0.18s ease,
+		color 0.18s ease;
+}
+
+.priceOfferRow .cancelButton:hover {
+	background: #fde9e7;
+	border-color: #d99a94;
+	color: #8f3831;
+}
+
+/* Add Price Offer = final row */
+
+.priceOfferAddRow {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 64px;
+	padding: 0.75rem 1rem;
+	box-sizing: border-box;
+	background: color-mix(in srgb, var(--clr-card-bg), white 4%);
+}
+
+.priceOfferAddButton {
+	width: 100%;
+	min-height: 46px;
+	padding: 0.7rem 1rem;
+	border: 1px dashed var(--clr-accent);
+	border-radius: 4px;
+	background: transparent;
+	color: var(--clr-accent);
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition:
+		background-color 0.18s ease,
+		color 0.18s ease,
+		border-color 0.18s ease;
+}
+
+.priceOfferAddButton:hover {
+	background: color-mix(in srgb, var(--clr-accent), white 92%);
+	border-color: var(--clr-accent);
+}
+
+.priceOfferAddButton:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+/* ---------- Map ---------- */
+
+.mapSection {
+	display: grid;
+	gap: 0.8rem;
+	width: 100%;
+	margin: 1rem 0 1.25rem;
+}
+
+.mapHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.mapTitle {
+	display: block;
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--clr-muted);
+}
+
+.mapHint {
+	margin: 0.25rem 0 0;
+	font-size: 0.82rem;
+	color: var(--clr-muted);
+}
+
+.mapActions {
+	display: flex;
+	gap: 0.5rem;
+	margin-left: auto;
+}
+
+.mapWrapper {
+	width: 100%;
+	height: 360px;
+	border: 1px solid var(--clr-border);
+	background: var(--clr-card-bg);
+	overflow: hidden;
+}
+
+.mapWrapper > * {
+	width: 100%;
+	height: 100%;
+}
+
+/* ---------- Shared Location Button ---------- */
+
+.locateButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 170px;
+	height: 46px;
+	padding: 0 1.25rem;
+	border: 1px solid #e2d4c4;
+	border-radius: 4px;
+	background: #faf6f1;
+	color: #66584b;
+	font: inherit;
+	font-size: 0.9rem;
+	font-weight: 600;
+	line-height: 1;
+	white-space: nowrap;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease,
+		color 0.2s ease,
+		transform 0.12s ease;
+}
+
+.locateButton:hover {
+	background: #fff1df;
+	border-color: #e6c49b;
+	color: #805b2d;
+}
+
+.locateButton:active {
+	transform: translateY(1px);
+	background: #e4f3e8;
+	border-color: #a9d0b3;
+	color: #3f704b;
+}
+
+/* ---------- Location ---------- */
+
+.locationSection {
+	display: grid;
+	gap: 0.75rem;
+	padding-top: 0.5rem;
+}
+
+.locationHeader {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 1.5rem;
+	width: 100%;
+}
+
+.locationHeaderText {
+	display: grid;
+	gap: 0.15rem;
+	min-width: 0;
+}
+
+.locationHeaderText .kicker {
+	display: block;
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--clr-muted);
+}
+
+.locationTitle {
+	margin: 0;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--clr-ink);
+}
+
+.sectionHint {
+	margin: 0;
+	font-size: 0.82rem;
+	color: var(--clr-muted);
+}
+
+.locationHeader .locateButton {
+	width: auto;
+	min-width: 170px;
+}
+
+/* ---------- Actions ---------- */
+
+.error {
+	margin: 0.9rem 0 0;
+	color: #b42318;
+}
+
+.formActions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.75rem;
+	margin-top: 1.5rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--clr-border);
+}
+
+.formActions > button[type="submit"] {
+	padding: 0.8rem 1rem;
+	border: 1px solid var(--clr-accent);
+	border-radius: 4px;
+	background: var(--clr-accent);
+	color: #fff;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition: filter 0.18s ease;
+}
+
+.formActions > button[type="submit"]:hover {
+	filter: brightness(0.95);
+}
+
+.formActions > button[type="submit"]:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.cancelButton {
+	padding: 0.8rem 1.2rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 4px;
+	background: white;
+	color: var(--clr-ink);
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	transition:
+		background 0.18s ease,
+		filter 0.18s ease;
+}
+
+.cancelButton:hover {
+	background: color-mix(in srgb, var(--clr-card-bg), white 5%);
+}
+
+.cardActions {
+	min-height: 0;
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.cardActions button {
+	padding: 0.8rem 0.9rem;
+	padding-inline: 0.9rem;
+	border: 1px solid var(--clr-accent);
+	border-radius: 4px;
+	background: var(--clr-accent);
+	color: #fff;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition: filter 0.18s ease;
+}
+
+.cardActions button:hover {
+	filter: brightness(0.95);
+}
+
+.cardActions button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.cardActions button.dangerButton {
+	border-color: #b42318 !important;
+	background: #b42318 !important;
+	color: #fff;
+}
+
+.cardActions button.dangerButton:hover {
+	filter: brightness(0.92);
+}
+
+/* ---------- List ---------- */
+
+.listArea {
+	display: grid;
+	gap: 1rem;
+}
+
+.listHead p {
+	margin: 0.35rem 0 0;
+	color: var(--clr-muted);
+}
+
+.emptyState {
+	padding: 1.2rem;
+	border: 1px dashed var(--clr-border);
+	border-radius: 8px;
+	background: color-mix(in srgb, var(--clr-card-bg), white 5%);
+	color: var(--clr-muted);
+	text-align: center;
+}
+
+.searchBar {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.searchBar input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.8rem 0.9rem;
+	border: 1px solid var(--clr-border);
+	background: white;
+	color: var(--clr-ink);
+	font: inherit;
+	outline: none;
+	box-shadow: 0 0 0.2em 3px
+		color-mix(in srgb, var(--clr-accent), transparent 96%);
+}
+
+.searchBar input:focus {
+	border-color: var(--clr-accent);
+	box-shadow: 0 0 0 3px
+		color-mix(in srgb, var(--clr-accent), transparent 82%);
+}
+
+/* ---------- VirtuosoGrid viewport ---------- */
+
+/*
+ * VirtuosoGrid owns the scrolling/virtualization.
+ * The height controls the visible viewport/window.
+ */
+.cards {
+	width: 100%;
+	height: 70vh;
+	min-height: 540px;
+	overflow: auto;
+}
+
+/*
+ * VirtuosoGrid Item.
+ * This controls the number of columns.
+ */
+.gridItem {
+	display: flex;
+	flex: 0 0 33.333333%;
+	box-sizing: border-box;
+	width: 33.333333%;
+	padding: 0.5rem;
+}
+
+/*
+ * VirtuosoGrid List.
+ * Must remain a wrapping flex container.
+ */
+.gridList {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	width: 100%;
+}
+
+/* ---------- Hotel Cards ---------- */
+
+.card {
+	display: grid;
+	height: 300px;
+	gap: 0.75rem;
+	width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+	padding: 1rem;
+	border: 1px solid var(--clr-border);
+	border-radius: 8px;
+	background: white;
+}
+
+.card:hover {
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.cardTop {
+	display: flex;
+	min-height: 0;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.cardTop h4 {
+	font-size: 1rem;
+	color: var(--clr-ink);
+}
+
+.ratingPill {
+	padding: 0.45rem 0.7rem;
+	background: color-mix(in srgb, var(--clr-accent), white 82%);
+	color: var(--clr-accent);
+	font-size: 0.78rem;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.location {
+	min-height: 0;
+	margin: 0;
+	color: var(--clr-muted);
+	font-size: 0.92rem;
+}
+
+.locationDetail {
+	min-height: 0;
+	margin: -0.25rem 0 0;
+	color: var(--clr-ink);
+	font-size: 0.88rem;
+}
+
+.metaGrid {
+	min-height: 0;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0.5rem;
+	font-size: 0.8rem;
+	color: var(--clr-muted);
+}
+
+.ownerList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.ownerChip {
+	padding: 0.35rem 0.55rem;
+	border: 1px solid var(--clr-border);
+	background: color-mix(in srgb, var(--clr-card-bg), white 8%);
+	font-size: 0.76rem;
+	color: var(--clr-ink);
+}
+
+/* ---------- VirtuosoGrid Responsive Layout ---------- */
+
+/* Desktop: 3 cards per row */
+@media (min-width: 901px) {
+	.gridItem {
+		flex-basis: 33.333333%;
+		width: 33.333333%;
+	}
+}
+
+/* Tablet: 2 cards per row */
+@media (min-width: 601px) and (max-width: 900px) {
+	.gridItem {
+		flex-basis: 50%;
+		width: 50%;
+	}
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 600px) {
+	.cards {
+		height: 65vh;
+		min-height: 280px;
+	}
+
+	.gridItem {
+		flex-basis: 100%;
+		width: 100%;
+		padding: 0.35rem 0;
+	}
+}
+
+/* ---------- General Responsive Layout ---------- */
+
+@media (max-width: 900px) {
+	.formGrid,
+	.metaGrid {
+		grid-template-columns: 1fr;
+	}
+
+	.formHead,
+	.cardTop {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.mapHeader {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.mapActions {
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.mapActions .locateButton {
+		width: 100%;
+	}
+
+	.locationHeader {
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+	}
+
+	.locationHeader .locateButton {
+		width: 100%;
+	}
+
+	.mapWrapper {
+		height: 300px;
+	}
+
+	/* Price Offers */
+	.priceOfferRow {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.priceOfferActions {
+		justify-content: flex-start;
+	}
+	
+	.priceOfferRow .cancelButton {
+		width: 100%;
+	}
+}
+
+@media (max-width: 600px) {
+	.priceOfferRow {
+		grid-template-columns: 1fr;
+		gap: 0.7rem;
+	}
+
+	.priceOfferActions {
+		width: 100%;
+	}
+
+	.priceOfferRow .cancelButton {
+		margin-top: 5px;
+		width: 100%;
+	}
+
+	.priceOfferAddRow {
+		padding: 0.65rem;
+	}
+}

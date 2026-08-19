@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap");
+:root {
+  --clr-navbar: #ffddc4;
+  --clr-dashboard: #ffeada;
+  --clr-accent: #f76c1d;
+  --clr-accent-muted: #e48249;
+  --clr-yellow: #ffd23d;
+  --clr-rating-text: #8a6d3b;
+  --clr-ink: #1f1a17;
+  --clr-muted: #746a63;
+  --clr-bg: #faf8f5;
+  --clr-card-bg: #ffffff;
+  --clr-border: #eee7df;
+  --skew: -6deg;
+}
+
+
+.html, html {
+  padding: 0;
+  margin: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: (var(--clr-bg));
+  font-family: "Exo 2", sans-serif;
+}
+
+#root {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+button:active{
+  transform: scale(0.97);
+}

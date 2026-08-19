@@ -1,0 +1,26 @@
+{
+  "name": "minisprint004-workspace",
+  "private": true,
+  "workspaces": [
+    "src/Backend",
+    "src/Frontend"
+  ],
+  "scripts": {
+    "db":"npm run db:setup && npm run db:init",
+    "db:setup": "tsx setup/setup_python.ts",
+    "db:init": "npm --workspace src/Backend run db:init",
+
+    "dev:backend": "npm --workspace src/Backend run dev",
+    "dev:frontend": "npm --workspace src/Frontend run dev",
+    "build:frontend": "npm --workspace src/Frontend run build",
+    "preview:frontend": "npm --workspace src/Frontend run preview",
+
+    "dev": "concurrently -k --color --prefix \"[ {name} ] >\" --prefix-colors \"blue,green\" -n SERVER,\" VITE \" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "preview": "npm run build:frontend && concurrently -k --color --prefix \"[ {name} ] >\" --prefix-colors \"blue,green\" -n SERVER,PREVIEW \"npm run dev:backend\" \"npm run preview:frontend\""
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "concurrently": "^9.1.2"
+  },
+  "type": "module"
+}
