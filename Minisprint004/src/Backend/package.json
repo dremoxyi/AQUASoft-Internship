@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/backend.ts",
-    "db:init": "tsx ../../setup/db-init.ts",
+    "preview": "tsx src/backend.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {

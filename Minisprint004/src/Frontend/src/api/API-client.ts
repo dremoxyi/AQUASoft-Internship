@@ -1,5 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000'
-
+const API_PORT = import.meta.env.SERVER_PORT;
+const API_URL  = `http://localhost:${API_PORT}`
 
 export async function apiClient(endpoint: string, options?: RequestInit) {
 	const response = await fetch(`${API_URL}${endpoint}`, {

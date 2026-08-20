@@ -8,7 +8,38 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 dotenv.config({ path: resolve(__dirname, '../../../.env'), quiet: true })
+
 const port = process.env.SERVER_PORT;
+const jwtSecret = process.env.JWT_SECRET;
+const bearerSecret = process.env.ADMIN_TOKEN;
+
+if (!port) {
+    console.error(
+        '\n\x1b[31m|||||||||||||||||   >>  ERROR  <<   |||||||||||||||||\x1b[0m\n' +
+        '\x1b[31m|\x1b[0m Please define \x1b[36mSERVER_PORT\x1b[0m in \x1b[32m./Minisprint004/.env\x1b[0m \x1b[31m|\x1b[0m\n' +
+        '\x1b[31m|||||||||||||||||||||||||||||||||||||||||||||||||||||\x1b[0m'
+    )
+}
+if (!jwtSecret) {
+    console.error(
+        '\n\x1b[31m|||||||||||||||||   >>  ERROR  <<   |||||||||||||||||\x1b[0m\n' +
+        '\x1b[31m|\x1b[0m Please define \x1b[36mJWT_SECRET\x1b[0m in \x1b[32m./Minisprint004/.env\x1b[0m \x1b[31m|\x1b[0m\n' +
+        '\x1b[31m|||||||||||||||||||||||||||||||||||||||||||||||||||||\x1b[0m'
+    )
+}
+if (!port || !jwtSecret) process.exit(1)
+
+if (!bearerSecret) {
+    console.log(
+        '\n\x1b[34mNOTICE\x1b[0m: \x1b[36mADMIN_TOKEN\x1b[0m is optional and is not defined in ' +
+        '\x1b[32m./Minisprint004/.env\x1b[0m. ' +
+        '\n        \x1b[90mBearer_Auth\x1b[0m routes will be unavailable.'
+
+    )
+}
+
+
+
 
 import cors from 'cors'
 import express from 'express';
@@ -81,7 +112,7 @@ const controllers = {userController, authController, airportController,hotelCont
 app.use(cors({origin: ["http://localhost:5173","http://localhost:4173"], credentials: true }));
 //----------//
 app.use('/', router(controllers))
-app.listen(port, () => {
+const server = app.listen(port, () => {
     const startup_time = Date.now() - startTime;
     console.log(`\n   \x1b[1;34mSERVER\x1b[0m \x1b[34mv0.9.0\x1b[0m  \x1b[90mready in\x1b[0m ${startup_time}ms\n`)
     console.log(`   \x1b[34m➜\x1b[0m  Running on:\x1b[36m http://localhost:${port}\x1b[0m\n`)

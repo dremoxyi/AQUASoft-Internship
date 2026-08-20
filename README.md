@@ -34,7 +34,7 @@ You can find in the `console` a structured walkthrough of TypeScript concepts
 - Node.js v26.3.0+
 
 ### How to use
-*Reminder: be sure to be located in `./AQUASoft-Intership/Minisprint001/$` before continuing*
+*Reminder: be sure to be located in `./AQUASoft-Internship/Minisprint001/$` before continuing*
 
 Run the command
 ```console
@@ -161,6 +161,7 @@ Refer to /src/models/sequelize/index.js for hotel object
 ## MiniSprint 004
 Full-Stack Project - Hotel Application
 
+
 ### Built with
 
 **Frontend**
@@ -189,6 +190,11 @@ Full-Stack Project - Hotel Application
 
 *Reminder: be sure to be located in `./AQUASoft-Intership/Minisprint004/` before continuing.*
 
+Create a `.env` file from `.env.example`:
+1. Copy `.env.example`
+2. Rename the copy to `.env`
+3. Update the values in `.env` if necessary
+
 Install all dependencies:
 
 ```console
@@ -215,6 +221,6 @@ npm run dev
 
 The backend server will be available at `http://localhost:3000/`.
 
-The frontend will be available at `http://localhost:4173/`.
+The frontend will be available at `http://localhost:4173/` in **preview** mode and `http://localhost:5173/` in **development** mode.
 
 
