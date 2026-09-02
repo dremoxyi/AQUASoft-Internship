@@ -6,11 +6,15 @@ The repository is organized such as every folder is a project.
 You can clone this repository with `git clone https://github.com/dremoxyi/AQUASoft-Internship.git`. 
 
 **_Summary_**
+- [Ai001](#ai-001)
 - [MiniSprint 001](#minisprint-001)
 - [MiniSprint 002](#minisprint-002)
 - [MiniSprint 003](#minisprint-003)
 - [MiniSprint 004](#minisprint-004)
 - More coming...
+
+## Ai 001
+Ai 001 is an introductory exercice to Ai and HuggingFace -> How to use them in python, how they work, how to interpret them etc...
 
 ## MiniSprint 001
 Minisprint 001 is an introductory exercice to TypeScript and React.
