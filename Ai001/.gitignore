@@ -2,6 +2,7 @@
 *
 
 # Exception: Allow these file types
+!*/
 !*.ipynb
-!*.png
-!*.jpg
+!*/*.png
+!*/*.jpg
