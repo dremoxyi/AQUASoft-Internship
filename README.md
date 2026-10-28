@@ -6,15 +6,39 @@ The repository is organized such as every folder is a project.
 You can clone this repository with `git clone https://github.com/dremoxyi/AQUASoft-Internship.git`. 
 
 **_Summary_**
-- [Ai001](#ai-001)
+- [AI001](#ai001)
 - [MiniSprint 001](#minisprint-001)
 - [MiniSprint 002](#minisprint-002)
 - [MiniSprint 003](#minisprint-003)
 - [MiniSprint 004](#minisprint-004)
-- More coming...
 
-## Ai 001
-Ai 001 is an introductory exercice to Ai and HuggingFace -> How to use them in python, how they work, how to interpret them etc...
+## AI001
+
+AI001 is a practical introduction to artificial intelligence with Python and
+Hugging Face. The work is organized as a sequence of Jupyter notebooks that
+move from using pretrained models to understanding their internal components
+and fine-tuning them.
+
+### Contents
+
+| Notebook | Topics |
+|----------|--------|
+| [`01/Tema1.ipynb`](Ai001/01/Tema1.ipynb) | Large language models (LLMs), vision-language models (VLMs), prompting, and text generation |
+| [`02/Tema2.ipynb`](Ai001/02/Tema2.ipynb) | BPE tokenizers, vision preprocessing, and model interpretability with integrated gradients and occlusion |
+| [`03/Tema3.ipynb`](Ai001/03/Tema3.ipynb) | Attention mechanisms and multilayer perceptrons |
+| [`04/Tema4.ipynb`](Ai001/04/Tema4.ipynb) | Vision-language model architecture, patch embeddings, and model comparisons |
+| [`05/Tema5.ipynb`](Ai001/05/Tema5.ipynb) | Dataset preparation and fine-tuning with LoRA and QLoRA |
+| [`06/Tema6.ipynb`](Ai001/06/Tema6.ipynb) | Dataset processing, training pipelines, evaluation, and inference |
+| [`07/Tema7.ipynb`](Ai001/07/Tema7.ipynb) | A drone-swarm simulation for thermal search |
+
+The folder also includes the assets used by the notebooks.
+
+### Prerequisites
+
+- Python 3.10 or later
+- Jupyter Notebook or JupyterLab
+- A GPU is recommended for the model loading and fine-tuning notebooks
+- **Google Colab is recommended and was used to verify all notebooks.**
 
 ## MiniSprint 001
 Minisprint 001 is an introductory exercice to TypeScript and React.
@@ -226,5 +250,3 @@ npm run dev
 The backend server will be available at `http://localhost:3000/`.
 
 The frontend will be available at `http://localhost:4173/` in **preview** mode and `http://localhost:5173/` in **development** mode.
-
-
